@@ -1,0 +1,21 @@
+<div class=\"me-4 text-subtle\">
+</div><div
+ class=\"text-justify-single\"
+>
+</div>
+<div class=\"grow flex items-center justify-center relative\"><a class=\"whitespace-pre mx-10\" data-toggle=\"tooltip\" title=\"
+\" href=\"
+\">
+</a><div class=\"grid grid-cols-[min-content_auto]\"><div></div><div>keegan<span class=\"text-secondary\">&commat;</span>beaulieu</div><div></div><div class=\"text-subtle\">---------------</div>
+Hi, my name is Keegan.  
+&#x200b; 
+I'm a Canadian developer with an 
+affinity for all things software, 
+be it systems, web, or game dev.  
+&#x200b; 
+Check out some of my <button class=\"text-subtle underline\" hx-get=\"/page/projects\" hx-push-url=\"/page/projects\" hx-target=\"#header-page-content\">work</button>!
+<div></div><div>&#x200b;</div><div></div><div class=\"flex relative\">
+<span class=\"
+\">_</span>
+<div class=\"absolute w-full h-[50%] bottom-0 left-0 bg-backdrop\"></div></div></div><div class=\"absolute left-0 bottom-0 translate-y-[100%] w-full\">
+</div></div>

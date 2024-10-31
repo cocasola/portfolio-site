@@ -1,0 +1,8 @@
+package view
+
+templ ShadowBox() {
+    <div class="relative bg-backdrop">
+        { children... }
+        <div class="w-full h-full top-2 right-2 bg-subtle absolute dither z-[-1]"></div>
+    </div>
+}

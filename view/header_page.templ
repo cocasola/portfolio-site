@@ -1,0 +1,78 @@
+package view
+
+import "main/view/components"
+
+script headerLinkScript() {
+    const el = me();
+
+    function update() {
+        me(".header-link", el).attr(
+            "data-active",
+            window.location.pathname == el.attr("hx-push-url") ? "" : null
+        );
+    }
+
+    update();
+
+    me("body").on("htmx:after-request", _ => update());
+}
+
+script scrollTo(id string) {
+    const targetRect = me(id).getBoundingClientRect();
+    const bodyRect = document.body.getBoundingClientRect();
+    const top = targetRect.top + targetRect.height/2 - bodyRect.top;
+
+    window.scrollTo({ top: top - window.innerHeight/2, behavior: "smooth" });
+}
+
+templ headerLink(id string) {
+    <button onClick={scrollTo(id)} data-target={id}>
+        <div class={"hover:underline hover:text-fg text-subtle",
+                    "data-[active]:bg-fg data-[active]:text-backdrop header-link"}>
+            {children...}
+        </div>
+        @headerLinkScript()
+    </button>
+}
+
+templ HeaderPage(content templ.Component) {
+    <div class="min-h-screen flex flex-col">
+        <div class="fixed top-0 w-full z-50 bg-backdrop">
+            <div class="container mx-auto">
+                <div class="flex justify-center items-center h-[80px] relative">
+                    <div class="grow basis-1 flex items-center">
+                        @view.NameLogo()
+                    </div>
+                    <div class="grow basis-1 flex items-center justify-center">
+                        <div class="p-3 flex gap-3 border border-subtle">
+                            @headerLink("body") { Home }
+                            .
+                            @headerLink("#about") { About }
+                            .
+                            @headerLink("#projects") { Projects }
+                        </div>
+                    </div>
+                    <div class="grow basis-1 justify-end flex">
+                        <a
+                            hx-get="/contact"
+                            hx-push-url="/contact"
+                            hx-target="body"
+                        >
+                            @view.Button() {
+                                Contact
+                            }
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute left-0 bottom-0 translate-y-[100%] w-screen">
+                <div class="w-full bg-backdrop/50">&#x200b;</div>
+                <div class="w-full bg-backdrop/30">&#x200b;</div>
+                <div class="w-full bg-backdrop/10">&#x200b;</div>
+            </div>
+        </div>
+        <div id="header-page-content" class="mt-[80px] flex-1 flex flex-col">
+            @content
+        </div>
+    </div>
+}

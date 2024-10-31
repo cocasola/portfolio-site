@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "templates",
+            "command": "templ",
+            "args": [ "generate", "--watch" ],
+            "type": "process",
+            "runOptions": { "runOn": "folderOpen" }
+        },
+        {
+            "label": "server",
+            "command": "air",
+            "args": [
+                "--build.delay", "100",
+                "--build.exclude_dir", "node_modules",
+                "--build.include_ext", "go",
+                "--build.stop_on_error", "false",
+                "--misc.clean_on_exit", "true"
+            ],
+            "type": "process",
+            "runOptions": { "runOn": "folderOpen" }
+        },
+        {
+            "label": "tailwind",
+            "command": "npx",
+            "args": ["tailwindcss", "-i", "./site.css", "-o", "./static/site.css", "--watch"],
+            "type": "shell",
+            "runOptions": { "runOn": "folderOpen" }
+        }
+    ]
+}

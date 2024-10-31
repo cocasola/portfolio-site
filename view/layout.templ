@@ -1,0 +1,50 @@
+package view
+
+script globals() {
+	let removeListeners = [];
+
+	window.onRemove = function (node, callback) {
+		removeListeners.push({
+			node: node,
+			callback: callback
+		});
+	}
+
+	var observer = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			var nodes = Array.from(mutation.removedNodes);
+
+			nodes.forEach(removedNode => {
+				for (var i = 0; i < removeListeners.length; ++i) {
+					if (removedNode.contains(removeListeners[i].node)) {
+						removeListeners[i].callback();
+						removeListeners.splice(i, 1);
+						--i;
+					}
+				}
+			});
+		});
+	});
+
+	observer.observe(document.body, {
+		childList: true,
+		subtree: true
+	});
+}
+
+templ Layout(content templ.Component) {
+	<html>
+		<head>
+			<title>Keegan Beaulieu</title>
+			<script src="https://unpkg.com/htmx.org@2.0.3"></script>
+			<script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+			<script src="https://cdn.jsdelivr.net/gh/gnat/surreal@main/surreal.js"></script>
+			<link rel="stylesheet" href="/static/site.css">
+		</head>
+		<body class="bg-backdrop text-fg mono" onLoad={ globals() }>
+			@content
+        </body>
+		<footer>
+		</footer>
+    </html>
+}

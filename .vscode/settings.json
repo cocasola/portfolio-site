@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "**/*_templ.go": true,
+        "**/*_templ.txt": true,
+    }
+}

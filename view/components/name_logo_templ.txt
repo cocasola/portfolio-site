@@ -1,0 +1,1 @@
+<button hx-get=\"/\" hx-push-url=\"/\" hx-target=\"body\"><div class=\"text-nowrap text-left\"><span class=\"text-secondary\">*</span>kb_site</div></button>

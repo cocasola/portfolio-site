@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+
+.mono {
+    font-family: "JetBrains Mono";
+    font-variant-ligatures: none;
+    letter-spacing: 1px;
+}
+
+.text-justify-single {
+    text-align: justify;
+    text-align-last: justify;
+}
+
+.dither {
+    mask-image: radial-gradient(black 0.5px, transparent 0.5px);
+    mask-size: 4px 4px;
+}

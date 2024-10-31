@@ -1,0 +1,131 @@
+package view
+
+import (
+    "strconv"
+	"math/rand/v2"
+)
+
+type asciiArt struct {
+    Artist string
+    Bytes  string
+    Src    string
+}
+
+var asciiArtArr = []asciiArt{
+    asciiArt{
+        Artist: "A Light Bulb - Joan Stark/keegan Beaulieu",
+        Src:    "https://oldcompcz.github.io/jgs/joan_stark/electro.html#lightbulb",
+        Bytes:
+            "       |        \n"+
+            "  \\   ___   /  \n"+
+            "    .'   `.     \n"+
+            "__ |       | __ \n"+
+            "   '  +~+  '    \n"+
+            "    `.\\ /.'    \n"+
+            "  /  (---)  \\  \n"+
+            "      `-'       \n",
+    },
+    asciiArt{
+        Artist: "Saturn - Joan Stark",
+        Src:    "https://oldcompcz.github.io/jgs/joan_stark/celestal.html#planets",
+        Bytes:
+            "       *       +        \n"+
+            " '                  |   \n"+
+            "   .-.,=\"``\"=.     -O-\n"+
+            "   '=/_       \\     |  \n"+
+            "*   |  '=._    |        \n"+
+            "     \\     `=./`,   *  \n"+
+            "  .   '=.__.=' `='      \n"+
+            "                   +    \n"+
+            "     *        '         \n",
+    },
+    asciiArt{
+        Artist: "LED - Unknown",
+        Src:    "https://asciiart.website/index.php?art=objects/electronics",
+        Bytes:
+            "  .--.   \n"+
+            " | .-.|  \n"+
+            " |T  ||  \n"+
+            "[_|__|_] \n"+
+            "  |  |   \n"+
+            "  |  |   \n"+
+            "  |  |   \n",
+    },
+}
+
+templ line(index *int, justify bool) {
+    <div class="me-4 text-subtle">{ strconv.Itoa(func (i *int) int { *i += 1; return *i; }(index)) }
+    </div>
+    <div
+        if justify {
+            class="text-justify-single"
+        }
+    >
+        { children... }
+    </div>
+}
+
+templ Home() {
+    {{ randAscii := rand.IntN(len(asciiArtArr)) }}
+
+    <div class="grow flex items-center justify-center relative">
+        <a
+            class="whitespace-pre mx-10"
+            data-toggle="tooltip"
+            title={asciiArtArr[randAscii].Artist}
+            href={templ.URL(asciiArtArr[randAscii].Src)}
+        >
+            {asciiArtArr[randAscii].Bytes}
+        </a>
+        <div class="grid grid-cols-[min-content_auto]">
+            <div></div>
+            <div>keegan<span class="text-secondary">&commat;</span>beaulieu</div>
+
+            <div></div>
+            <div class="text-subtle">---------------</div>
+
+            {{ index := 0 }}
+
+            @line(&index, false) { Hi, my name is Keegan.  }
+            @line(&index, false) { &#x200b; }
+            @line(&index, true) { I'm a Canadian developer with an }
+            @line(&index, true) { affinity for all things software, }
+            @line(&index, false) { be it systems, web, or game dev.  }
+            @line(&index, false) { &#x200b; }
+            @line(&index, false) {
+                Check out some of my
+                <button
+                    class="text-subtle underline"
+                    hx-get="/page/projects"
+                    hx-push-url="/page/projects"
+                    hx-target="#header-page-content"
+                >
+                    work
+                </button>!
+            }
+
+            <div></div>
+            <div>&#x200b;</div>
+
+            <div></div>
+            <div class="flex relative">
+                for _, it := range []string{
+                    "bg-fg", "bg-subtle", "bg-faded", "bg-primary", "bg-secondary",
+                } {
+                    for i := 0; i<3; i++ {
+                        <span class={it, "text-transparent"}>_</span>
+                    }
+                }
+                // Half it
+                <div class="absolute w-full h-[50%] bottom-0 left-0 bg-backdrop"></div>
+            </div>
+        </div>
+        // <div class="absolute bottom-2">
+        //     V
+        // </div>
+        <div class="absolute left-0 bottom-0 translate-y-[100%] w-full">
+            @About()
+            @Footer()
+        </div>
+    </div>
+}
