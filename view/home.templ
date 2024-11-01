@@ -3,6 +3,7 @@ package view
 import (
     "strconv"
     "io/ioutil"
+    "main/view/components"
 )
 
 var asciiArt = func() string {
@@ -11,60 +12,67 @@ var asciiArt = func() string {
 }()
 
 templ Home() {
-    <div class="grow flex flex-col md:flex-row gap-16 items-center justify-center relative">
-        <span class="whitespace-pre">
-            {asciiArt}
-        </span>
-        <div class="w-80 text-justify grid grid-cols-[auto_minmax(auto,500px)]">
-            <div></div>
-            <div>
-                keegan<span class="text-secondary">&commat;</span>beaulieu
-                <br>
-                <span class="text-subtle">---------------</span>
-                <br><br>
-            </div>
-            <div class="relative">
-                &nbsp;&nbsp;
-                <div class="absolute h-full left-0 top-0 overflow-hidden">
-                    for i := 0; i < 32; i++ {
-                        <div class="text-subtle">{ strconv.Itoa(i) }&nbsp;</div>
-                    }
+    <div class="grow flex flex-col justify-center gap-16 p-16 items-center relative">
+        <div class="flex flex-col md:flex-row gap-16 items-center justify-center">
+            <span class="whitespace-pre">
+                {asciiArt}
+            </span>
+            <div class="w-80 grid grid-cols-[auto_minmax(auto,500px)]">
+                <div></div>
+                <div>
+                    keegan<span class="text-secondary">&commat;</span>beaulieu
+                    <br>
+                    <span class="text-subtle">---------------</span>
                 </div>
-            </div>
-            <div>
-                Hi, my name is Keegan.
-                <br><br>
-                I'm a Canadian developer with an affinity for all things software, be it systems,
-                web, or game dev.
-                <br><br>
-                Check out some of my
-                <button
-                    class="text-subtle underline"
-                    hx-get="/page/projects"
-                    hx-push-url="/page/projects"
-                    hx-target="#header-page-content"
-                >
-                    work
-                </button>!
-            </div>
-            <div></div>
-            <div>
-                <br>
-                <div class="flex relative">
-                    for _, it := range []string{
-                        "bg-fg", "bg-subtle", "bg-faded", "bg-primary", "bg-secondary",
-                    } {
-                        for i := 0; i<3; i++ {
-                            <span class={it, "text-transparent"}>_</span>
+
+                <div class="relative">
+                    &nbsp;&nbsp;
+                    <div class="absolute h-full left-0 top-0 overflow-hidden">
+                        for i := 0; i < 32; i++ {
+                            <div class="text-subtle">{ strconv.Itoa(i) }&nbsp;</div>
                         }
-                    }
-                    // Half it
-                    <div class="absolute w-full h-[50%] bottom-0 left-0 bg-backdrop"></div>
+                    </div>
+                </div>
+                <div>
+                    Hi, my name is Keegan.
+                    <br><br>
+                    I'm a Canadian developer with an affinity for all things software, be it systems,
+                    web, or game dev.
+                    <br><br>
+                    Check out some of my
+                    <button
+                        class="text-subtle underline"
+                        hx-get="/page/projects"
+                        hx-push-url="/page/projects"
+                        hx-target="#header-page-content"
+                    >
+                        work
+                    </button>!
+                </div>
+                <div></div>
+                <div>
+                    <br>
+                    <div class="flex relative">
+                        for _, it := range []string{
+                            "bg-fg", "bg-subtle", "bg-faded", "bg-primary", "bg-secondary",
+                        } {
+                            for i := 0; i<3; i++ {
+                                <span class={it, "text-transparent"}>_</span>
+                            }
+                        }
+                        // Half it
+                        <div class="absolute w-full h-[50%] bottom-0 left-0 bg-backdrop"></div>
+                    </div>
                 </div>
             </div>
         </div>
+        @view.Socials()
         <div class="absolute left-0 bottom-0 translate-y-[100%] w-full">
+            <div class="border-t-2 border-dashed border-faded"></div>
             @About()
+            <div class="border-t-2 border-dashed border-faded"></div>
+            @Projects()
+            <div class="border-t-2 border-dashed border-faded"></div>
             @Footer()
         </div>
     </div>

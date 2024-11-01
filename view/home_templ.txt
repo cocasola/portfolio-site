@@ -1,9 +1,12 @@
-<div class=\"grow flex flex-col md:flex-row gap-16 items-center justify-center relative\"><span class=\"whitespace-pre\">
-</span><div class=\"w-80 text-justify grid grid-cols-[auto_minmax(auto,500px)]\"><div></div><div>keegan<span class=\"text-secondary\">&commat;</span>beaulieu<br><span class=\"text-subtle\">---------------</span><br><br></div><div class=\"relative\">&nbsp;&nbsp;<div class=\"absolute h-full left-0 top-0 overflow-hidden\">
+<div class=\"grow flex flex-col justify-center gap-16 p-16 items-center relative\"><div class=\"flex flex-col md:flex-row gap-16 items-center justify-center\"><span class=\"whitespace-pre\">
+</span><div class=\"w-80 grid grid-cols-[auto_minmax(auto,500px)]\"><div></div><div>keegan<span class=\"text-secondary\">&commat;</span>beaulieu<br><span class=\"text-subtle\">---------------</span></div><div class=\"relative\">&nbsp;&nbsp;<div class=\"absolute h-full left-0 top-0 overflow-hidden\">
 <div class=\"text-subtle\">
 &nbsp;</div>
 </div></div><div>Hi, my name is Keegan.<br><br>I'm a Canadian developer with an affinity for all things software, be it systems, web, or game dev.<br><br>Check out some of my <button class=\"text-subtle underline\" hx-get=\"/page/projects\" hx-push-url=\"/page/projects\" hx-target=\"#header-page-content\">work</button>!</div><div></div><div><br><div class=\"flex relative\">
 <span class=\"
 \">_</span>
-<div class=\"absolute w-full h-[50%] bottom-0 left-0 bg-backdrop\"></div></div></div></div><div class=\"absolute left-0 bottom-0 translate-y-[100%] w-full\">
+<div class=\"absolute w-full h-[50%] bottom-0 left-0 bg-backdrop\"></div></div></div></div></div>
+<div class=\"absolute left-0 bottom-0 translate-y-[100%] w-full\"><div class=\"border-t-2 border-dashed border-faded\"></div>
+<div class=\"border-t-2 border-dashed border-faded\"></div>
+<div class=\"border-t-2 border-dashed border-faded\"></div>
 </div></div>

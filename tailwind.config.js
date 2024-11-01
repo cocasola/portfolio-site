@@ -9,6 +9,7 @@ module.exports = {
                 primary: colors.sky[500],
                 secondary: colors.red[400],
                 backdrop: colors.neutral[950],
+                backlight: colors.neutral[900],
                 faded: colors.neutral[700],
                 fg: colors.gray[200],
                 subtle: colors.gray[400],

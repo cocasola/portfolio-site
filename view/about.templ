@@ -12,10 +12,10 @@ var ledAscii = func() string {
 }()
 
 templ About() {
-    <div class="bg-faded/5 py-16" id="about">
-        <div class="m-auto container flex flex-col items-center lg:flex-row xl:px-40">
+    <div class="py-16 text-pretty" id="about">
+        <div class="m-auto container flex flex-col items-center gap-10 lg:flex-row xl:px-40">
             <div class="flex flex-col gap-10">
-                <div class="flex text-justify max-w-[500px]">
+                <div class="flex max-w-[500px]">
                     <div class="relative">
                         &nbsp;&nbsp;&nbsp;
                         <div class="absolute h-full top-0 left-0 overflow-hidden">
@@ -74,9 +74,13 @@ templ About() {
                         <div>
                             As a full-stack developer, I'm happy working with all aspects of the Web.
                             Recently, Go has been my focus, with
-                            <button class="text-subtle underline">
+                            <a
+                                class="text-subtle underline"
+                                href="https://github.com/cocasola/portfolio-site"
+                                target="_blank"
+                            >
                                 this site
-                            </button>
+                            </a>
                             being done with Go & HTMX.
                         </div>
                     </div>
