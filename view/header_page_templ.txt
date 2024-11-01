@@ -5,7 +5,7 @@
 \">
 </div>
 </button>
-<div class=\"min-h-screen flex flex-col\"><div class=\"fixed top-0 w-full z-50 bg-backdrop\"><div class=\"container mx-auto\"><div class=\"flex justify-center items-center h-[80px] relative\"><div class=\"grow basis-1 flex items-center\">
+<div class=\"min-h-screen flex flex-col\"><div class=\"fixed top-0 w-full z-50 bg-backdrop\"><div class=\"container mx-auto xl:px-40\"><div class=\"flex justify-center items-center relative m-8 gap-8\"><div class=\"grow basis-1 flex items-center\">
 </div><div class=\"grow basis-1 flex items-center justify-center\"><div class=\"p-3 flex gap-3 border border-subtle\">
 Home 
 .
@@ -14,5 +14,5 @@ About
 Projects 
 </div></div><div class=\"grow basis-1 justify-end flex\"><a hx-get=\"/contact\" hx-push-url=\"/contact\" hx-target=\"body\">
 Contact
-</a></div></div></div><div class=\"absolute left-0 bottom-0 translate-y-[100%] w-screen\"><div class=\"w-full bg-backdrop/50\">&#x200b;</div><div class=\"w-full bg-backdrop/30\">&#x200b;</div><div class=\"w-full bg-backdrop/10\">&#x200b;</div></div></div><div id=\"header-page-content\" class=\"mt-[80px] flex-1 flex flex-col\">
+</a></div></div></div></div><div id=\"header-page-content\" class=\"mt-8 flex-1 flex flex-col\">
 </div></div>

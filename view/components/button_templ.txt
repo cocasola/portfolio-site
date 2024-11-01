@@ -1,2 +1,4 @@
-<div class=\"relative active:translate-y-0.5 group\"><div class=\"w-full h-full top-2 right-2 bg-subtle absolute dither\"></div><button class=\"bg-primary py-3 px-5 group-hover:bg-fg group-hover:text-backdrop relative\">
-</button></div>
+<div class=\"active:translate-y-0.5 group\">
+<div class=\"bg-primary py-3 px-5 group-hover:bg-fg group-hover:text-backdrop\">
+</div>
+</div>

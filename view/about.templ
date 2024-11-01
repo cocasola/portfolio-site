@@ -1,26 +1,54 @@
 package view
 
-import "main/view/components"
+import (
+    "main/view/components"
+    "strconv"
+    "io/ioutil"
+)
+
+var ledAscii = func() string {
+    bytes, _ := ioutil.ReadFile("led-ascii.txt")
+    return string(bytes)
+}()
 
 templ About() {
-    <div class="flex flex-col gap-32 text-justify" id="about">
-        <div class="w-[600px] m-auto">
-            With a computer engineer for a father, I was given lots of electronics and an Arduino
-            as a kid. I recall displaying animations with LEDs being my earliest fixation.
-            <br><br>
-            This trend of graphical programming would last all the way to now. With 3d graphics and
-            game engines being my all-time favourite topic.
-            <br><br>
-            The unbounded ability to create and breathe life into ideas, crossed with the joy of
-            solving problems is borderline addicting!
-            <br><br>
-            I've been programming
-            
-        </div>
-        <div class="py-32 bg-faded/10">
-            <div class="container m-auto grid 2xl:gap-40 gap-20 xs:grid-cols-1 lg:grid-cols-3 px-20 lg:px-0">
+    <div class="bg-faded/5 py-16" id="about">
+        <div class="m-auto container flex flex-col items-center lg:flex-row xl:px-40">
+            <div class="flex flex-col gap-10">
+                <div class="flex text-justify max-w-[500px]">
+                    <div class="relative">
+                        &nbsp;&nbsp;&nbsp;
+                        <div class="absolute h-full top-0 left-0 overflow-hidden">
+                            for i := 0; i < 32; i++ {
+                                <div class="text-subtle">{ strconv.Itoa(i) }&nbsp;</div>
+                            }
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <span class="text-subtle">With a computer engineer for a father, ---</span>
+                        <div class="absolute dither bg-subtle h-2 w-full"></div>
+                        <br><br>
+                        I was given lots of electronics and an Arduino as a kid. Displaying
+                        animations with LEDs being my earliest fixation.
+                        <br><br>
+                        This trend of graphical programming would last all the way to now. With
+                        3d graphics and game engines being my all-time favourite domain.
+                        <br><br>
+                        Now 22, I have since expanded my expertise to include full-stack web dev, having
+                        attended SAIT in 2023.
+                        <br><br>
+                        Always curious, learning, and pushing my limits, the unbounded creativity
+                        of software has me addicted.
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <span class="whitespace-pre">{ledAscii}</span>
+                </div>
+            </div>
+            <div class="grow"></div>
+            <div class="flex flex-col gap-8 max-w-[400px]">
                 @view.ShadowBox() {
-                    <div class="border border-subtle p-5 h-full gap-6 flex flex-col">
+                    <div class="border border-subtle p-5 gap-6 flex flex-col">
                         <div>
                             <u>Systems</u> <span class="text-faded">&sol;&sol;</span>
                             <span class="text-subtle">c/c++</span> 
@@ -34,7 +62,7 @@ templ About() {
                     </div>
                 }
                 @view.ShadowBox() {
-                    <div class="border border-subtle p-5 h-full gap-6 flex flex-col">
+                    <div class="border border-subtle p-5 gap-6 flex flex-col">
                         <div>
                             <u>Web</u> <span class="text-faded">&sol;&sol;</span>
                             <span class="text-subtle">c#</span>
@@ -54,7 +82,7 @@ templ About() {
                     </div>
                 }
                 @view.ShadowBox() {
-                    <div class="border border-subtle p-5 h-full gap-6 flex flex-col">
+                    <div class="border border-subtle p-5 gap-6 flex flex-col">
                         <div>
                             <u>Game Dev</u> <span class="text-faded">&sol;&sol;</span>
                             <span class="text-subtle">c#</span>

@@ -1,10 +1,11 @@
 package view
 
 templ Button() {
-    <div class="relative active:translate-y-0.5 group">
-        <div class="w-full h-full top-2 right-2 bg-subtle absolute dither"></div>
-        <button class="bg-primary py-3 px-5 group-hover:bg-fg group-hover:text-backdrop relative">
-            {children...}
-        </button>
+    <div class="active:translate-y-0.5 group">
+        @ShadowBox() {
+            <div class="bg-primary py-3 px-5 group-hover:bg-fg group-hover:text-backdrop">
+                {children...}
+            </div>
+        }
     </div>
 }

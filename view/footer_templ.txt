@@ -1,2 +1,3 @@
-<div class=\"container m-auto p-32\">
-<div class=\"mt-5\"><span class=\"text-faded\">&sol;&sol;</span> keegan.beaulieu895<span class=\"text-secondary\">&commat;</span>gmail.com</div></div>
+<div class=\"container mx-auto flex flex-col lg:items-end lg:flex-row gap-5 px-8 xl:px-40 py-16\">
+<div><span class=\"text-faded\">&sol;&sol;</span> keegan.g.beaulieu<span class=\"text-secondary\">&commat;</span>gmail.com</div><div class=\"grow hidden lg:block\"></div><div class=\"flex gap-4 items-end\">Made with<pre class=\"text-secondary\">
+</pre><span class=\"text-faded\">(c) 2024</span></div></div>

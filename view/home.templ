@@ -2,97 +2,41 @@ package view
 
 import (
     "strconv"
-	"math/rand/v2"
+    "io/ioutil"
 )
 
-type asciiArt struct {
-    Artist string
-    Bytes  string
-    Src    string
-}
-
-var asciiArtArr = []asciiArt{
-    asciiArt{
-        Artist: "A Light Bulb - Joan Stark/keegan Beaulieu",
-        Src:    "https://oldcompcz.github.io/jgs/joan_stark/electro.html#lightbulb",
-        Bytes:
-            "       |        \n"+
-            "  \\   ___   /  \n"+
-            "    .'   `.     \n"+
-            "__ |       | __ \n"+
-            "   '  +~+  '    \n"+
-            "    `.\\ /.'    \n"+
-            "  /  (---)  \\  \n"+
-            "      `-'       \n",
-    },
-    asciiArt{
-        Artist: "Saturn - Joan Stark",
-        Src:    "https://oldcompcz.github.io/jgs/joan_stark/celestal.html#planets",
-        Bytes:
-            "       *       +        \n"+
-            " '                  |   \n"+
-            "   .-.,=\"``\"=.     -O-\n"+
-            "   '=/_       \\     |  \n"+
-            "*   |  '=._    |        \n"+
-            "     \\     `=./`,   *  \n"+
-            "  .   '=.__.=' `='      \n"+
-            "                   +    \n"+
-            "     *        '         \n",
-    },
-    asciiArt{
-        Artist: "LED - Unknown",
-        Src:    "https://asciiart.website/index.php?art=objects/electronics",
-        Bytes:
-            "  .--.   \n"+
-            " | .-.|  \n"+
-            " |T  ||  \n"+
-            "[_|__|_] \n"+
-            "  |  |   \n"+
-            "  |  |   \n"+
-            "  |  |   \n",
-    },
-}
-
-templ line(index *int, justify bool) {
-    <div class="me-4 text-subtle">{ strconv.Itoa(func (i *int) int { *i += 1; return *i; }(index)) }
-    </div>
-    <div
-        if justify {
-            class="text-justify-single"
-        }
-    >
-        { children... }
-    </div>
-}
+var asciiArt = func() string {
+    bytes, _ := ioutil.ReadFile("home-ascii.txt")
+    return string(bytes)
+}()
 
 templ Home() {
-    {{ randAscii := rand.IntN(len(asciiArtArr)) }}
-
-    <div class="grow flex items-center justify-center relative">
-        <a
-            class="whitespace-pre mx-10"
-            data-toggle="tooltip"
-            title={asciiArtArr[randAscii].Artist}
-            href={templ.URL(asciiArtArr[randAscii].Src)}
-        >
-            {asciiArtArr[randAscii].Bytes}
-        </a>
-        <div class="grid grid-cols-[min-content_auto]">
+    <div class="grow flex flex-col md:flex-row gap-16 items-center justify-center relative">
+        <span class="whitespace-pre">
+            {asciiArt}
+        </span>
+        <div class="w-80 text-justify grid grid-cols-[auto_minmax(auto,500px)]">
             <div></div>
-            <div>keegan<span class="text-secondary">&commat;</span>beaulieu</div>
-
-            <div></div>
-            <div class="text-subtle">---------------</div>
-
-            {{ index := 0 }}
-
-            @line(&index, false) { Hi, my name is Keegan.  }
-            @line(&index, false) { &#x200b; }
-            @line(&index, true) { I'm a Canadian developer with an }
-            @line(&index, true) { affinity for all things software, }
-            @line(&index, false) { be it systems, web, or game dev.  }
-            @line(&index, false) { &#x200b; }
-            @line(&index, false) {
+            <div>
+                keegan<span class="text-secondary">&commat;</span>beaulieu
+                <br>
+                <span class="text-subtle">---------------</span>
+                <br><br>
+            </div>
+            <div class="relative">
+                &nbsp;&nbsp;
+                <div class="absolute h-full left-0 top-0 overflow-hidden">
+                    for i := 0; i < 32; i++ {
+                        <div class="text-subtle">{ strconv.Itoa(i) }&nbsp;</div>
+                    }
+                </div>
+            </div>
+            <div>
+                Hi, my name is Keegan.
+                <br><br>
+                I'm a Canadian developer with an affinity for all things software, be it systems,
+                web, or game dev.
+                <br><br>
                 Check out some of my
                 <button
                     class="text-subtle underline"
@@ -102,27 +46,23 @@ templ Home() {
                 >
                     work
                 </button>!
-            }
-
+            </div>
             <div></div>
-            <div>&#x200b;</div>
-
-            <div></div>
-            <div class="flex relative">
-                for _, it := range []string{
-                    "bg-fg", "bg-subtle", "bg-faded", "bg-primary", "bg-secondary",
-                } {
-                    for i := 0; i<3; i++ {
-                        <span class={it, "text-transparent"}>_</span>
+            <div>
+                <br>
+                <div class="flex relative">
+                    for _, it := range []string{
+                        "bg-fg", "bg-subtle", "bg-faded", "bg-primary", "bg-secondary",
+                    } {
+                        for i := 0; i<3; i++ {
+                            <span class={it, "text-transparent"}>_</span>
+                        }
                     }
-                }
-                // Half it
-                <div class="absolute w-full h-[50%] bottom-0 left-0 bg-backdrop"></div>
+                    // Half it
+                    <div class="absolute w-full h-[50%] bottom-0 left-0 bg-backdrop"></div>
+                </div>
             </div>
         </div>
-        // <div class="absolute bottom-2">
-        //     V
-        // </div>
         <div class="absolute left-0 bottom-0 translate-y-[100%] w-full">
             @About()
             @Footer()
