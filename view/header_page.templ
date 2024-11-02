@@ -17,16 +17,8 @@ script headerLinkScript() {
     me("body").on("htmx:after-request", _ => update());
 }
 
-script scrollTo(id string) {
-    const targetRect = me(id).getBoundingClientRect();
-    const bodyRect = document.body.getBoundingClientRect();
-    const top = targetRect.top + targetRect.height/2 - bodyRect.top;
-
-    window.scrollTo({ top: top - window.innerHeight/2, behavior: "smooth" });
-}
-
 templ headerLink(id string) {
-    <button onClick={scrollTo(id)} data-target={id}>
+    <button onClick={view.ScrollTo(id)} data-target={id}>
         <div class={"hover:underline hover:text-fg text-subtle",
                     "data-[active]:bg-fg data-[active]:text-backdrop header-link"}>
             {children...}
@@ -37,19 +29,22 @@ templ headerLink(id string) {
 
 templ HeaderPage(content templ.Component) {
     <div class="min-h-screen flex flex-col">
-        <div class="fixed top-0 w-full z-50 bg-backdrop">
-            <div class="container mx-auto xl:px-40">
-                <div class="flex justify-center items-center relative gap-8 py-5">
+        <div
+            id="header"
+            class="fixed top-0 w-full z-50 bg-backdrop"
+        >
+            <div class="container mx-auto px-5 md:px-0 xl:px-40">
+                <div class="flex justify-center items-center relative gap-8 h-24">
                     <div class="grow basis-1 flex items-center">
                         @view.NameLogo()
                     </div>
-                    <div class="grow basis-1 flex items-center justify-center">
+                    <div class="grow basis-1 items-center justify-center hidden md:flex">
                         <div class="p-3 flex gap-3 border border-subtle">
                             @headerLink("body") { Home }
                             .
-                            @headerLink("#about") { About }
-                            .
                             @headerLink("#projects") { Projects }
+                            .
+                            @headerLink("#about") { About }
                         </div>
                     </div>
                     <div class="grow basis-1 justify-end flex">
@@ -66,7 +61,7 @@ templ HeaderPage(content templ.Component) {
                 </div>
             </div>
         </div>
-        <div id="header-page-content" class="mt-8 flex-1 flex flex-col">
+        <div id="header-page-content" class="mt-24 flex-1 flex flex-col">
             @content
         </div>
     </div>

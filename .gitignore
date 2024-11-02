@@ -1,5 +1,9 @@
 test/
+tmp/
+node_modules/
 
 static/site.css
-node_modules/
+
+.env
 package-lock.json
+.air.toml

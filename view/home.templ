@@ -12,8 +12,8 @@ var asciiArt = func() string {
 }()
 
 templ Home() {
-    <div class="grow flex flex-col justify-center gap-16 p-16 items-center relative">
-        <div class="flex flex-col md:flex-row gap-16 items-center justify-center">
+    <div class="grow flex flex-col justify-center gap-16 py-16 items-center relative">
+        <div class="flex flex-col-reverse md:flex-row gap-16 items-center justify-center">
             <span class="whitespace-pre">
                 {asciiArt}
             </span>
@@ -28,7 +28,7 @@ templ Home() {
                 <div class="relative">
                     &nbsp;&nbsp;
                     <div class="absolute h-full left-0 top-0 overflow-hidden">
-                        for i := 0; i < 32; i++ {
+                        for i := 1; i < 32; i++ {
                             <div class="text-subtle">{ strconv.Itoa(i) }&nbsp;</div>
                         }
                     </div>
@@ -40,12 +40,7 @@ templ Home() {
                     web, or game dev.
                     <br><br>
                     Check out some of my
-                    <button
-                        class="text-subtle underline"
-                        hx-get="/page/projects"
-                        hx-push-url="/page/projects"
-                        hx-target="#header-page-content"
-                    >
+                    <button class="text-subtle underline" onClick={view.ScrollTo("#projects")}>
                         work
                     </button>!
                 </div>
@@ -68,11 +63,8 @@ templ Home() {
         </div>
         @view.Socials()
         <div class="absolute left-0 bottom-0 translate-y-[100%] w-full">
-            <div class="border-t-2 border-dashed border-faded"></div>
-            @About()
-            <div class="border-t-2 border-dashed border-faded"></div>
             @Projects()
-            <div class="border-t-2 border-dashed border-faded"></div>
+            @About()
             @Footer()
         </div>
     </div>

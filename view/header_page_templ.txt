@@ -5,14 +5,14 @@
 \">
 </div>
 </button>
-<div class=\"min-h-screen flex flex-col\"><div class=\"fixed top-0 w-full z-50 bg-backdrop\"><div class=\"container mx-auto xl:px-40\"><div class=\"flex justify-center items-center relative gap-8 py-5\"><div class=\"grow basis-1 flex items-center\">
-</div><div class=\"grow basis-1 flex items-center justify-center\"><div class=\"p-3 flex gap-3 border border-subtle\">
+<div class=\"min-h-screen flex flex-col\"><div id=\"header\" class=\"fixed top-0 w-full z-50 bg-backdrop\"><div class=\"container mx-auto px-5 md:px-0 xl:px-40\"><div class=\"flex justify-center items-center relative gap-8 h-24\"><div class=\"grow basis-1 flex items-center\">
+</div><div class=\"grow basis-1 items-center justify-center hidden md:flex\"><div class=\"p-3 flex gap-3 border border-subtle\">
 Home 
 .
-About 
-.
 Projects 
+.
+About 
 </div></div><div class=\"grow basis-1 justify-end flex\"><a hx-get=\"/contact\" hx-push-url=\"/contact\" hx-target=\"body\">
 Contact
-</a></div></div></div></div><div id=\"header-page-content\" class=\"mt-8 flex-1 flex flex-col\">
+</a></div></div></div></div><div id=\"header-page-content\" class=\"mt-24 flex-1 flex flex-col\">
 </div></div>

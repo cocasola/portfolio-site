@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"main/view"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/a-h/templ"
@@ -60,6 +61,8 @@ var layout = Wrapper{
 }
 
 func main() {
+	InitMail()
+
 	router := http.NewServeMux()
 
 	router.HandleFunc("/{$}", handler(func(w http.ResponseWriter, r *http.Request) error {
@@ -96,8 +99,15 @@ func main() {
 		return nil
 	}))
 
-	err := http.ListenAndServe(":80", router)
-	if err != nil {
-		fmt.Println(err)
+	if os.Getenv("ENV") == "PROD" {
+		err := http.ListenAndServeTLS(":443", os.Getenv("CERT_PATH"), os.Getenv("KEY_PATH"), router)
+		if err != nil {
+			fmt.Println(err)
+		}
+	} else {
+		err := http.ListenAndServe(":80", router)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
