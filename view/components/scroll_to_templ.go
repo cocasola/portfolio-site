@@ -8,10 +8,10 @@ package view
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func ScrollTo() templ.ComponentScript {
+func ScrollTo(id string) templ.ComponentScript {
 	return templ.ComponentScript{
 		Name: `__templ_ScrollTo_ef2e`,
-		Function: `function __templ_ScrollTo_ef2e(){const targetRect = me(id).getBoundingClientRect();
+		Function: `function __templ_ScrollTo_ef2e(id){const targetRect = me(id).getBoundingClientRect();
     const bodyRect = document.body.getBoundingClientRect();
     const headerRect = me("#header").getBoundingClientRect();
 
@@ -23,8 +23,8 @@ func ScrollTo() templ.ComponentScript {
         window.scrollTo({ top: top - window.innerHeight/2, behavior: "smooth" });
     }
 }`,
-		Call:       templ.SafeScript(`__templ_ScrollTo_ef2e`),
-		CallInline: templ.SafeScriptInline(`__templ_ScrollTo_ef2e`),
+		Call:       templ.SafeScript(`__templ_ScrollTo_ef2e`, id),
+		CallInline: templ.SafeScriptInline(`__templ_ScrollTo_ef2e`, id),
 	}
 }
 

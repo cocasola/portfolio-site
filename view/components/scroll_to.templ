@@ -1,6 +1,6 @@
 package view
 
-script ScrollTo() {
+script ScrollTo(id string) {
     const targetRect = me(id).getBoundingClientRect();
     const bodyRect = document.body.getBoundingClientRect();
     const headerRect = me("#header").getBoundingClientRect();
