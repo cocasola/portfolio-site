@@ -1,0 +1,8 @@
+<div class=\"relative\"><div class=\"dither bg-faded/50 w-full h-full absolute\"></div><div label-for=\"
+\" class=\"capitalized hidden\">
+</div>
+<input id=\"
+\" name=\"
+\" class=\"
+\" placeholder=\"
+\" rows=\"10\"></div>

@@ -1,4 +1,4 @@
 <div class=\"active:translate-y-0.5 group\">
-<div class=\"bg-primary py-3 px-5 group-hover:bg-fg group-hover:text-backdrop\">
+<div class=\"bg-primary py-3 px-7 group-hover:bg-fg group-hover:text-backdrop\">
 </div>
 </div>

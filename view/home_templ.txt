@@ -1,4 +1,4 @@
-<div class=\"grow flex flex-col justify-center gap-16 py-16 items-center relative\"><div class=\"flex flex-col-reverse md:flex-row gap-16 items-center justify-center\"><span class=\"whitespace-pre\">
+<div class=\"w-full h-[calc(100vh-6rem)] flex flex-col justify-center gap-16 py-16 items-center relative\"><div class=\"flex flex-col-reverse md:flex-row gap-16 items-center justify-center\"><span class=\"whitespace-pre\">
 </span><div class=\"w-80 grid grid-cols-[auto_minmax(auto,500px)]\"><div></div><div>keegan<span class=\"text-secondary\">&commat;</span>beaulieu<br><span class=\"text-subtle\">---------------</span></div><div class=\"relative\">&nbsp;&nbsp;<div class=\"absolute h-full left-0 top-0 overflow-hidden\">
 <div class=\"text-subtle\">
 &nbsp;</div>
@@ -8,5 +8,4 @@
 <span class=\"
 \">_</span>
 <div class=\"absolute w-full h-[50%] bottom-0 left-0 bg-backdrop\"></div></div></div></div></div>
-<div class=\"absolute left-0 bottom-0 translate-y-[100%] w-full\">
-</div></div>
+</div>

@@ -1,2 +1,8 @@
-<div class=\"w-full h-full flex flex-col items-center relative\"><div class=\"absolute top-0 m-5\">
+<div class=\"w-screen h-screen grid grid-columns-1 grid-rows-[auto_1fr_auto]\"><div class=\"my-5 mx-auto\">
+</div><div class=\"p-16 grow flex flex-col justify-center\"><div class=\"max-w-[500px] m-auto\">
+<form class=\"p-6 border border-subtle w-full\" hx-post=\"/contact\" hx-target=\"#fields\"><div>Get in touch with me</div><div class=\"text-subtle\">--------------------</div><div class=\"flex flex-col gap-5\" id=\"fields\">
+</div><div class=\"text-faded text-nowrap my-5\">&sol;&sol; Or, email <a href=\"mailto:keegan.g.beaulieu@gmail.com\" class=\"underline text-subtle/50\">keegan.g.beaulieu&commat;gmail.com</a></div><div class=\"flex justify-center mt-5\"><button>
+Send 
+</button></div></form>
 </div></div>
+</div>

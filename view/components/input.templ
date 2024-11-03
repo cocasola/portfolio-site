@@ -1,0 +1,15 @@
+package view
+
+templ Input(name string, placeholder string) {
+    <div class="relative">
+        <div class="dither bg-faded/50 w-full h-full absolute"></div>
+        <div label-for={name} class="capitalized hidden">{ name }</div>
+        <input
+            id={name}
+            name={name}
+            class={"border border-faded bg-transparent outline-none w-full p-3 relative"}
+            placeholder={placeholder}
+            rows="10"
+        >
+    </div>
+}

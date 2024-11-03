@@ -7,6 +7,8 @@ import (
 	"os"
 	"strings"
 
+	c "main/view/components"
+
 	"github.com/a-h/templ"
 )
 
@@ -60,20 +62,87 @@ var layout = Wrapper{
 	Fn:   func(c templ.Component) (templ.Component, error) { return view.Layout(c), nil },
 }
 
+type contactFields struct {
+	name    c.Field
+	email   c.Field
+	message c.Field
+}
+
+func initContactFields() contactFields {
+	return contactFields{
+		name: c.Field{
+			Name:        "name",
+			Placeholder: "Your name",
+			Limit:       16,
+			Validate: func(value string) string {
+				if len(value) < 2 {
+					return "Please enter a name"
+				} else {
+					return ""
+				}
+			},
+		},
+		email: c.Field{
+			Name:        "email",
+			Placeholder: "Your email",
+			Limit:       254,
+			Validate: func(value string) string {
+				if len(value) < 4 {
+					return "Please enter an email"
+				} else {
+					return ""
+				}
+			},
+		},
+		message: c.Field{
+			Name:        "message",
+			Placeholder: "Write your message here...",
+			Rows:        5,
+			Limit:       1024,
+			Validate: func(value string) string {
+				if len(value) < 8 {
+					return "Please enter an proper message"
+				} else {
+					return ""
+				}
+			},
+		},
+	}
+}
+
+func (fields *contactFields) ptrArray() []*c.Field {
+	return []*c.Field{&fields.name, &fields.email, &fields.message}
+}
+
 func main() {
 	InitMail()
 
 	router := http.NewServeMux()
 
-	router.HandleFunc("/{$}", handler(func(w http.ResponseWriter, r *http.Request) error {
-		return RenderView(w, r, []Wrapper{layout}, view.HeaderPage(view.Home()))
+	router.HandleFunc("GET /{$}", handler(func(w http.ResponseWriter, r *http.Request) error {
+		return RenderView(w, r, []Wrapper{layout}, view.HeaderPage(view.MainPages()))
 	}))
 
-	router.HandleFunc("/contact", handler(func(w http.ResponseWriter, r *http.Request) error {
-		return RenderView(w, r, []Wrapper{layout}, view.Contact())
+	router.HandleFunc("GET /contact", handler(func(w http.ResponseWriter, r *http.Request) error {
+		fields := initContactFields()
+		return RenderView(w, r, []Wrapper{layout}, view.Contact(fields.ptrArray()))
 	}))
 
-	router.HandleFunc("/favicon.ico", handler(func(w http.ResponseWriter, r *http.Request) error {
+	router.HandleFunc("POST /contact", handler(func(w http.ResponseWriter, r *http.Request) error {
+		fields := initContactFields()
+
+		err := c.ReadBodyIntoFields(r, fields.ptrArray())
+		if err != nil {
+			return c.Fields(fields.ptrArray()).Render(r.Context(), w)
+		}
+
+		return c.FieldsSuccess(
+			"Successfully sent message!",
+			fields.ptrArray(),
+		).Render(r.Context(), w)
+	}))
+
+	router.HandleFunc("GET /favicon.ico", handler(func(w http.ResponseWriter, r *http.Request) error {
 		http.NotFound(w, r)
 		return nil
 	}))
@@ -83,7 +152,7 @@ func main() {
 		http.StripPrefix("/static", http.FileServer(http.Dir("static"))),
 	)
 
-	router.HandleFunc("/404", handler(func(w http.ResponseWriter, r *http.Request) error {
+	router.HandleFunc("GET /404", handler(func(w http.ResponseWriter, r *http.Request) error {
 		if r.Header.Get("HX-Request") == "" {
 			return RenderView(w, r, []Wrapper{layout}, view.E404())
 		} else {

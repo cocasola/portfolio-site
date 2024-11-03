@@ -1,0 +1,25 @@
+<div class=\"relative border border-secondary/50\"><div class=\"dither bg-secondary/30 w-full h-full absolute\"></div><div class=\"p-3\">
+</div></div>
+<div class=\"relative border border-primary/50\"><div class=\"dither bg-primary/30 w-full h-full absolute\"></div><div class=\"p-3\">
+</div></div>
+<div><div class=\"relative\"><div class=\"dither bg-faded/50 w-full h-full absolute\"></div><div label-for=\"
+\" class=\"capitalized hidden\">
+</div>
+<textarea id=\"
+\" name=\"
+\" type=\"
+\" class=\"
+\" placeholder=\"
+\" rows=\"
+\">
+</textarea>
+<input value=\"
+\" id=\"
+\" name=\"
+\" type=\"
+\" class=\"border border-faded bg-transparent outline-none w-full p-3 relative\" placeholder=\"
+\">
+</div>
+<div class=\"text-secondary\">
+</div>
+</div>

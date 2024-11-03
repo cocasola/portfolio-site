@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.mono {
+@font-face {
     font-family: "JetBrains Mono";
+    src:
+        local("JetBrains Mono"),
+        url("/static/JetBrainsMono-VariableFont_wght.ttf");
+}
+
+.mono {
+    font-family: "JetBrains Mono", "Lucida Console", monospace;
     font-variant-ligatures: none;
     letter-spacing: 1px;
 }

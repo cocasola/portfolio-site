@@ -1,0 +1,101 @@
+package view
+
+import (
+    "strconv"
+    "net/http"
+	"fmt"
+)
+
+type Field struct {
+    Name        string
+    Placeholder string
+    Limit       int
+    Value       string
+    err         string
+    Type        string
+    Rows        int
+    Validate    func(value string) string
+}
+
+func ReadBodyIntoFields(r *http.Request, fields []*Field) error {
+    err := r.ParseForm()
+    if err != nil {
+        return err
+    }
+    defer r.Body.Close()
+
+    validationFailed := false
+
+    for _, field := range fields {
+        field.Value = r.Form.Get(field.Name)
+        field.err = field.Validate(field.Value)
+
+        if field.err != "" {
+            validationFailed = true
+        }
+    }
+
+    if validationFailed {
+        return fmt.Errorf("validation failure")
+    }
+
+    return nil
+}
+
+templ FieldsError(message string, fields []*Field) {
+    @Fields(fields)
+    <div class="relative border border-secondary/50">
+        <div class="dither bg-secondary/30 w-full h-full absolute"></div>
+        <div class="p-3">
+            { message }
+        </div>
+    </div>
+}
+
+templ FieldsSuccess(message string, fields []*Field) {
+    @Fields(fields)
+    <div class="relative border border-primary/50">
+        <div class="dither bg-primary/30 w-full h-full absolute"></div>
+        <div class="p-3">
+            { message }
+        </div>
+    </div>
+}
+
+templ Fields(fields []*Field) {
+    for _, field := range fields {
+        <div>
+            <div class="relative">
+                <div class="dither bg-faded/50 w-full h-full absolute"></div>
+                <div label-for={field.Name} class="capitalized hidden">{ field.Name }</div>
+                if field.Rows > 1 {
+                    <textarea
+                        id={field.Name}
+                        name={field.Name}
+                        type={field.Type}
+                        class={"border border-faded bg-transparent outline-none w-full p-3",
+                               "relative resize-none"}
+                        placeholder={field.Placeholder}
+                        rows={strconv.Itoa(field.Rows)}
+                    >
+                        {field.Value}
+                    </textarea>
+                } else {
+                    <input
+                        value={field.Value}
+                        id={field.Name}
+                        name={field.Name}
+                        type={field.Type}
+                        class="border border-faded bg-transparent outline-none w-full p-3 relative"
+                        placeholder={field.Placeholder}
+                    >
+                }
+            </div>
+            if field.err != "" {
+                <div class="text-secondary">
+                    { field.err }
+                </div>
+            }
+        </div>
+    }
+}
