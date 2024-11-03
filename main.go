@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 	"strings"
+	"sync"
+	"time"
 
 	c "main/view/components"
 
@@ -76,7 +78,7 @@ func initContactFields() contactFields {
 			Limit:       16,
 			Validate: func(value string) string {
 				if len(value) < 2 {
-					return "Please enter a name"
+					return "Please enter a name."
 				} else {
 					return ""
 				}
@@ -88,7 +90,7 @@ func initContactFields() contactFields {
 			Limit:       254,
 			Validate: func(value string) string {
 				if len(value) < 4 {
-					return "Please enter an email"
+					return "Please enter an email."
 				} else {
 					return ""
 				}
@@ -101,7 +103,7 @@ func initContactFields() contactFields {
 			Limit:       1024,
 			Validate: func(value string) string {
 				if len(value) < 8 {
-					return "Please enter an proper message"
+					return "Please enter a proper message."
 				} else {
 					return ""
 				}
@@ -128,12 +130,50 @@ func main() {
 		return RenderView(w, r, []Wrapper{layout}, view.Contact(fields.ptrArray()))
 	}))
 
+	lastMessages := &struct {
+		Map map[string]int64
+		Mu  sync.Mutex
+	}{
+		Map: make(map[string]int64),
+	}
+
 	router.HandleFunc("POST /contact", handler(func(w http.ResponseWriter, r *http.Request) error {
 		fields := initContactFields()
 
 		err := c.ReadBodyIntoFields(r, fields.ptrArray())
 		if err != nil {
 			return c.Fields(fields.ptrArray()).Render(r.Context(), w)
+		}
+
+		{
+			lastMessages.Mu.Lock()
+			defer lastMessages.Mu.Unlock()
+
+			now := time.Now().Unix()
+
+			last, ok := lastMessages.Map[r.RemoteAddr]
+			if ok {
+				if now-last < 60 {
+					return c.FieldsError(
+						"You just sent a message!",
+						fields.ptrArray(),
+					).Render(r.Context(), w)
+				}
+			}
+			lastMessages.Map[r.RemoteAddr] = now
+		}
+
+		message := fmt.Sprintf(
+			"Name: %s\n"+
+				"Email: %s\n"+
+				"-------------------------------------------------------\n"+
+				"%s",
+			fields.name.Value, fields.email.Value, fields.message.Value,
+		)
+
+		err = SendEmail(message)
+		if err != nil {
+			return fmt.Errorf("failed to send email: %w", err)
 		}
 
 		return c.FieldsSuccess(

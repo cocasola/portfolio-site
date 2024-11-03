@@ -1,6 +1,6 @@
 package view
 
-script globals() {
+script mainScript() {
 	let removeListeners = [];
 
 	window.onRemove = function (node, callback) {
@@ -30,6 +30,37 @@ script globals() {
 		childList: true,
 		subtree: true
 	});
+
+	var lastNode = null;
+
+	function updateCaret(input) {
+		const index = input.selectionStart;
+		if (index != input.selectionEnd)
+			return;
+
+		const holder = me(".caret-holder", input.parentElement);
+		holder.innerHTML =
+			input.value.substring(0, index)+
+			"<span class='bg-fg'>&nbsp;</span>"+
+			input.value.substring(index);
+		holder.styles({ left: (-input.scrollLeft).toString() });
+	}
+
+	document.addEventListener("selectionchange", function (e) {
+		any(".caret-holder").run(e => {
+			e.innerHTML = "";
+		});
+
+		if (e.target.nodeName == "INPUT" || e.target.nodeName == "TEXTAREA")
+			updateCaret(e.target);
+	});
+
+	document.addEventListener("keydown", function (e) {
+		setTimeout(() => {
+			if (e.target.nodeName == "INPUT" || e.target.nodeName == "TEXTAREA")
+				updateCaret(e.target);
+		}, 0);
+	});
 }
 
 templ Layout(content templ.Component) {
@@ -44,7 +75,7 @@ templ Layout(content templ.Component) {
 
 			<link rel="stylesheet" href="/static/site.css">
 		</head>
-		<body class="bg-backdrop text-fg mono" onLoad={ globals() }>
+		<body class="bg-backdrop text-fg mono" onLoad={ mainScript() }>
 			@content
         </body>
     </html>

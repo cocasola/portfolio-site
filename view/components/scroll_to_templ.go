@@ -10,21 +10,21 @@ import templruntime "github.com/a-h/templ/runtime"
 
 func ScrollTo(id string) templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_ScrollTo_ef2e`,
-		Function: `function __templ_ScrollTo_ef2e(id){const targetRect = me(id).getBoundingClientRect();
+		Name: `__templ_ScrollTo_27e7`,
+		Function: `function __templ_ScrollTo_27e7(id){const targetRect = me(id).getBoundingClientRect();
     const bodyRect = document.body.getBoundingClientRect();
     const headerRect = me("#header").getBoundingClientRect();
 
-    if (window.innerHeight < targetRect.height) {
-        const top = targetRect.top + headerRect.height - bodyRect.top;
-        window.scrollTo({ top: top - window.innerHeight/2, behavior: "smooth" });
+    if (window.innerHeight - headerRect.height < targetRect.height) {
+        const top = targetRect.top - bodyRect.top - headerRect.height;
+        window.scrollTo({ top: top, behavior: "smooth" });
     } else {
         const top = targetRect.top + targetRect.height/2 - bodyRect.top;
         window.scrollTo({ top: top - window.innerHeight/2, behavior: "smooth" });
     }
 }`,
-		Call:       templ.SafeScript(`__templ_ScrollTo_ef2e`, id),
-		CallInline: templ.SafeScriptInline(`__templ_ScrollTo_ef2e`, id),
+		Call:       templ.SafeScript(`__templ_ScrollTo_27e7`, id),
+		CallInline: templ.SafeScriptInline(`__templ_ScrollTo_27e7`, id),
 	}
 }
 

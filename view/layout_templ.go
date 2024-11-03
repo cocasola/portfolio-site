@@ -8,10 +8,10 @@ package view
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func globals() templ.ComponentScript {
+func mainScript() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_globals_34ae`,
-		Function: `function __templ_globals_34ae(){let removeListeners = [];
+		Name: `__templ_mainScript_a017`,
+		Function: `function __templ_mainScript_a017(){let removeListeners = [];
 
 	window.onRemove = function (node, callback) {
 		removeListeners.push({
@@ -40,9 +40,40 @@ func globals() templ.ComponentScript {
 		childList: true,
 		subtree: true
 	});
+
+	var lastNode = null;
+
+	function updateCaret(input) {
+		const index = input.selectionStart;
+		if (index != input.selectionEnd)
+			return;
+
+		const holder = me(".caret-holder", input.parentElement);
+		holder.innerHTML =
+			input.value.substring(0, index)+
+			"<span class='bg-fg'>&nbsp;</span>"+
+			input.value.substring(index);
+		holder.styles({ left: (-input.scrollLeft).toString() });
+	}
+
+	document.addEventListener("selectionchange", function (e) {
+		any(".caret-holder").run(e => {
+			e.innerHTML = "";
+		});
+
+		if (e.target.nodeName == "INPUT" || e.target.nodeName == "TEXTAREA")
+			updateCaret(e.target);
+	});
+
+	document.addEventListener("keydown", function (e) {
+		setTimeout(() => {
+			if (e.target.nodeName == "INPUT" || e.target.nodeName == "TEXTAREA")
+				updateCaret(e.target);
+		}, 0);
+	});
 }`,
-		Call:       templ.SafeScript(`__templ_globals_34ae`),
-		CallInline: templ.SafeScriptInline(`__templ_globals_34ae`),
+		Call:       templ.SafeScript(`__templ_mainScript_a017`),
+		CallInline: templ.SafeScriptInline(`__templ_mainScript_a017`),
 	}
 }
 
@@ -71,7 +102,7 @@ func Layout(content templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templ.RenderScriptItems(ctx, templ_7745c5c3_Buffer, globals())
+		templ_7745c5c3_Err = templ.RenderScriptItems(ctx, templ_7745c5c3_Buffer, mainScript())
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -79,7 +110,7 @@ func Layout(content templ.Component) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		var templ_7745c5c3_Var2 templ.ComponentScript = globals()
+		var templ_7745c5c3_Var2 templ.ComponentScript = mainScript()
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var2.Call)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
