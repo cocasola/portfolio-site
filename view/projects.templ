@@ -23,13 +23,15 @@ script displayDetails() {
     me(".project-details", wrapper).focus();
 
     setTimeout(() => {
+        me(".project-details", wrapper).styles("transition-property: all");
+        me(".project-details", wrapper).addClass("project-details-maximize");
+
         me(".project-details", wrapper).styles({
-            margin: "12rem 24rem",
-            width: "calc(100vw - 48rem)",
-            height: "calc(100vh - 24rem)",
-            left: "0px",
-            top: "0px",
-            "transition-property": "all"
+            margin: null,
+            width: null,
+            height: null,
+            left: null,
+            top: null
         });
     }, 0);
 }
@@ -44,20 +46,34 @@ script dismiss() {
     const projectCard = me(".project-card", wrapper.parentElement);
 
     const rect = projectCard.getBoundingClientRect();
+    const currentRect = me(".project-details", wrapper).getBoundingClientRect();
+
+    me(".project-details", wrapper).removeClass("project-details-maximize");
+    me(".project-details", wrapper).styles("transition-property: none");
 
     me(".project-details", wrapper).styles({
-        margin: "0",
-        width: rect.width,
-        height: rect.height,
-        left: rect.left,
-        top: rect.top
+        width: currentRect.width,
+        height: currentRect.height,
+        left: currentRect.left,
+        top: currentRect.top
     });
 
-    wrapper.addClass("opacity-0");
-
     setTimeout(() => {
-        wrapper.addClass("pointer-events-none");
-    }, 300);
+        me(".project-details", wrapper).styles("transition-property: all");
+
+        me(".project-details", wrapper).styles({
+            width: rect.width,
+            height: rect.height,
+            left: rect.left,
+            top: rect.top
+        });
+
+        wrapper.addClass("opacity-0");
+
+        setTimeout(() => {
+            wrapper.addClass("pointer-events-none");
+        }, 300);
+    }, 0);
 }
 
 templ project(name string, time string, content templ.Component, details templ.Component) {
@@ -149,9 +165,10 @@ templ frankDetails() {
 
 templ embeddedContent() {
     Using Arduino microcontrollers, custom circuits, and software in C to drive them.
+    I did a few "displays" for companies at fairs.
     <br><br>
-    I did a few "displays" for companies at fairs. These displays hooked
-    up to various sensors and generated visual/audio feedback.
+    These displays hooked up to various sensors and generated visual/audio feedback through
+    LED matrices or speakers.
 }
 
 templ embeddedDetails() {

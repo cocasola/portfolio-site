@@ -45,3 +45,12 @@
         animation: blink 1s steps(1, end) infinite;
     }
 }
+
+.project-details-maximize {
+    left: 50%;
+    top: 50%;
+    width: calc(100vw - 2rem);
+    height: calc(100vh - 1rem);
+    transform: translateX(-50%) translateY(-50%);
+    max-width: 1200px;
+}

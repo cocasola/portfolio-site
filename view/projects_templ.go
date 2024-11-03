@@ -12,8 +12,8 @@ import "main/view/components"
 
 func displayDetails() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_displayDetails_d047`,
-		Function: `function __templ_displayDetails_d047(){const projectCard = event.target.closest(".project-card");
+		Name: `__templ_displayDetails_fddd`,
+		Function: `function __templ_displayDetails_fddd(){const projectCard = event.target.closest(".project-card");
     const wrapper = me(".project-details-wrapper", projectCard.parentElement);
 
     const rect = projectCard.getBoundingClientRect();
@@ -33,25 +33,27 @@ func displayDetails() templ.ComponentScript {
     me(".project-details", wrapper).focus();
 
     setTimeout(() => {
+        me(".project-details", wrapper).styles("transition-property: all");
+        me(".project-details", wrapper).addClass("project-details-maximize");
+
         me(".project-details", wrapper).styles({
-            margin: "12rem 24rem",
-            width: "calc(100vw - 48rem)",
-            height: "calc(100vh - 24rem)",
-            left: "0px",
-            top: "0px",
-            "transition-property": "all"
+            margin: null,
+            width: null,
+            height: null,
+            left: null,
+            top: null
         });
     }, 0);
 }`,
-		Call:       templ.SafeScript(`__templ_displayDetails_d047`),
-		CallInline: templ.SafeScriptInline(`__templ_displayDetails_d047`),
+		Call:       templ.SafeScript(`__templ_displayDetails_fddd`),
+		CallInline: templ.SafeScriptInline(`__templ_displayDetails_fddd`),
 	}
 }
 
 func dismiss() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_dismiss_4ec0`,
-		Function: `function __templ_dismiss_4ec0(){if (event.type == "keydown" && event.key != "Escape") {
+		Name: `__templ_dismiss_3381`,
+		Function: `function __templ_dismiss_3381(){if (event.type == "keydown" && event.key != "Escape") {
         event.preventDefault()
         return;
     }
@@ -60,23 +62,37 @@ func dismiss() templ.ComponentScript {
     const projectCard = me(".project-card", wrapper.parentElement);
 
     const rect = projectCard.getBoundingClientRect();
+    const currentRect = me(".project-details", wrapper).getBoundingClientRect();
+
+    me(".project-details", wrapper).removeClass("project-details-maximize");
+    me(".project-details", wrapper).styles("transition-property: none");
 
     me(".project-details", wrapper).styles({
-        margin: "0",
-        width: rect.width,
-        height: rect.height,
-        left: rect.left,
-        top: rect.top
+        width: currentRect.width,
+        height: currentRect.height,
+        left: currentRect.left,
+        top: currentRect.top
     });
 
-    wrapper.addClass("opacity-0");
-
     setTimeout(() => {
-        wrapper.addClass("pointer-events-none");
-    }, 300);
+        me(".project-details", wrapper).styles("transition-property: all");
+
+        me(".project-details", wrapper).styles({
+            width: rect.width,
+            height: rect.height,
+            left: rect.left,
+            top: rect.top
+        });
+
+        wrapper.addClass("opacity-0");
+
+        setTimeout(() => {
+            wrapper.addClass("pointer-events-none");
+        }, 300);
+    }, 0);
 }`,
-		Call:       templ.SafeScript(`__templ_dismiss_4ec0`),
-		CallInline: templ.SafeScriptInline(`__templ_dismiss_4ec0`),
+		Call:       templ.SafeScript(`__templ_dismiss_3381`),
+		CallInline: templ.SafeScriptInline(`__templ_dismiss_3381`),
 	}
 }
 
@@ -209,7 +225,7 @@ func project(name string, time string, content templ.Component, details templ.Co
 			var templ_7745c5c3_Var10 string
 			templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 83, Col: 26}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 99, Col: 26}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 			if templ_7745c5c3_Err != nil {
@@ -222,7 +238,7 @@ func project(name string, time string, content templ.Component, details templ.Co
 			var templ_7745c5c3_Var11 string
 			templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(time)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 85, Col: 41}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 101, Col: 41}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 			if templ_7745c5c3_Err != nil {
@@ -289,7 +305,7 @@ func project(name string, time string, content templ.Component, details templ.Co
 			var templ_7745c5c3_Var15 string
 			templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 104, Col: 22}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 120, Col: 22}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
 			if templ_7745c5c3_Err != nil {
@@ -302,7 +318,7 @@ func project(name string, time string, content templ.Component, details templ.Co
 			var templ_7745c5c3_Var16 string
 			templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(time)
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 106, Col: 37}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `view/projects.templ`, Line: 122, Col: 37}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 			if templ_7745c5c3_Err != nil {

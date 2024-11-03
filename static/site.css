@@ -828,18 +828,6 @@ video {
   overflow: hidden;
 }
 
-.overflow-scroll {
-  overflow: scroll;
-}
-
-.overflow-y-scroll {
-  overflow-y: scroll;
-}
-
-.overscroll-contain {
-  overscroll-behavior: contain;
-}
-
 .overscroll-none {
   overscroll-behavior: none;
 }
@@ -1062,10 +1050,6 @@ video {
   transition-duration: 150ms;
 }
 
-.duration-500 {
-  transition-duration: 500ms;
-}
-
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -1115,6 +1099,15 @@ video {
   span {
     animation: blink 1s steps(1, end) infinite;
   }
+}
+
+.project-details-maximize {
+  left: 50%;
+  top: 50%;
+  width: calc(100vw - 2rem);
+  height: calc(100vh - 1rem);
+  transform: translateX(-50%) translateY(-50%);
+  max-width: 1200px;
 }
 
 .hover\:bg-backlight:hover {
