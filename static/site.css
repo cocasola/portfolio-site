@@ -588,6 +588,10 @@ video {
   }
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .fixed {
   position: fixed;
 }
@@ -606,6 +610,10 @@ video {
 
 .left-0 {
   left: 0px;
+}
+
+.right-0 {
+  right: 0px;
 }
 
 .right-2 {
@@ -642,8 +650,16 @@ video {
   margin-bottom: 1.25rem;
 }
 
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .mt-24 {
@@ -656,10 +672,6 @@ video {
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mb-5 {
-  margin-bottom: 1.25rem;
 }
 
 .flex {
@@ -715,21 +727,17 @@ video {
   width: 20rem;
 }
 
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .w-full {
   width: 100%;
 }
 
 .w-screen {
   width: 100vw;
-}
-
-.w-fit {
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.min-w-\[500px\] {
-  min-width: 500px;
 }
 
 .max-w-\[400px\] {
@@ -800,10 +808,6 @@ video {
   gap: 4rem;
 }
 
-.gap-2 {
-  gap: 0.5rem;
-}
-
 .gap-3 {
   gap: 0.75rem;
 }
@@ -824,8 +828,28 @@ video {
   overflow: hidden;
 }
 
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.overscroll-contain {
+  overscroll-behavior: contain;
+}
+
+.overscroll-none {
+  overscroll-behavior: none;
+}
+
 .whitespace-pre {
   white-space: pre;
+}
+
+.whitespace-pre-wrap {
+  white-space: pre-wrap;
 }
 
 .text-nowrap {
@@ -867,9 +891,12 @@ video {
   background-color: rgb(10 10 10 / var(--tw-bg-opacity));
 }
 
-.bg-backlight {
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+.bg-backdrop\/80 {
+  background-color: rgb(10 10 10 / 0.8);
+}
+
+.bg-backlight\/50 {
+  background-color: rgb(23 23 23 / 0.5);
 }
 
 .bg-black {
@@ -889,6 +916,10 @@ video {
 .bg-fg {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+.bg-fg\/50 {
+  background-color: rgb(229 231 235 / 0.5);
 }
 
 .bg-primary {
@@ -918,10 +949,6 @@ video {
   background-color: transparent;
 }
 
-.p-16 {
-  padding: 4rem;
-}
-
 .p-3 {
   padding: 0.75rem;
 }
@@ -934,6 +961,11 @@ video {
   padding: 1.5rem;
 }
 
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -942,6 +974,11 @@ video {
 .px-7 {
   padding-left: 1.75rem;
   padding-right: 1.75rem;
+}
+
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
 .py-16 {
@@ -971,6 +1008,11 @@ video {
 .text-accent {
   --tw-text-opacity: 1;
   color: rgb(252 211 77 / var(--tw-text-opacity));
+}
+
+.text-backdrop {
+  --tw-text-opacity: 1;
+  color: rgb(10 10 10 / var(--tw-text-opacity));
 }
 
 .text-faded {
@@ -1005,9 +1047,27 @@ video {
   text-decoration-line: underline;
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
 }
 
 @font-face {
@@ -1037,8 +1097,11 @@ video {
           mask-size: 4px 4px;
 }
 
-input, textarea {
-  caret-color: transparent !important;
+@media (min-width: 768px) {
+  input,
+    textarea {
+    caret-color: transparent !important;
+  }
 }
 
 @keyframes blink {
@@ -1057,6 +1120,10 @@ input, textarea {
 .hover\:bg-backlight:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-fg\/50:hover {
+  background-color: rgb(229 231 235 / 0.5);
 }
 
 .hover\:text-fg:hover {

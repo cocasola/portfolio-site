@@ -62,28 +62,27 @@ templ FieldsSuccess(message string, fields []*Field) {
     </div>
 }
 
-script hideCaret() {
-
-}
-
-script positionCaret() {
-    console.log("moved");
-}
-
 templ Fields(fields []*Field) {
     for _, field := range fields {
         <div>
             <div class="relative">
                 <div class="dither bg-faded/50 w-full h-full absolute"></div>
-                <div class={"absolute p-3 w-full h-full border border-transparent text-transparent",
-                            "caret-holder text-pre-wrap"}>
-                </div>
+                if field.Rows > 1 {
+                    <div class={"absolute p-3 w-full h-full border border-transparent text-transparent",
+                                "caret-holder whitespace-pre-wrap"}>
+                    </div>
+                } else {
+                    <div class={"absolute p-3 w-full h-full border border-transparent text-transparent",
+                                "caret-holder whitespace-pre"}>
+                    </div>
+                }
                 <div label-for={field.Name} class="capitalized hidden">{ field.Name }</div>
                 if field.Rows > 1 {
                     <textarea
                         id={field.Name}
                         name={field.Name}
                         type={field.Type}
+                        maxlength={strconv.Itoa(field.Limit)}
                         class={"border border-faded bg-transparent outline-none w-full p-3",
                                "relative resize-none"}
                         placeholder={field.Placeholder}
@@ -97,6 +96,7 @@ templ Fields(fields []*Field) {
                         id={field.Name}
                         name={field.Name}
                         type={field.Type}
+                        maxlength={strconv.Itoa(field.Limit)}
                         class="border border-faded bg-transparent outline-none w-full p-3 relative"
                         placeholder={field.Placeholder}
                     >

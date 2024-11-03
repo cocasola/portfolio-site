@@ -43,7 +43,7 @@ script mainScript() {
 			input.value.substring(0, index)+
 			"<span class='bg-fg'>&nbsp;</span>"+
 			input.value.substring(index);
-		holder.styles({ left: (-input.scrollLeft).toString() });
+		holder.styles({ left: (-input.scrollLeft).toString(), top: (-input.scrollTop).toString() });
 	}
 
 	document.addEventListener("selectionchange", function (e) {

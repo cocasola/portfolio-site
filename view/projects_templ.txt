@@ -1,5 +1,28 @@
-<div id=\"projects\" class=\"py-16 px-5 md:px-0 bg-backlight\"><div class=\"container lg:p-0 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 text-pretty\">
-<button class=\"border border-subtle p-5 flex flex-col h-full hover:bg-backlight text-left\"><div>DFSK - Styling Automation</div><div class=\"text-subtle\">-------------------------</div><div>Dress for Success Kelowna, a non-profit enabling women to succeed financially, had specific requirements for internal workflow and automation.<br><br>On top of a new client/volunteer database, I built a custom booking system suited to their needs. There is a multitude of supporting automations relating to client & volunteer management.</div></button>
-<button class=\"border border-subtle p-5 flex flex-col h-full hover:bg-backlight text-left\"><div>Frank - Project Assessment Tool</div><div class=\"text-subtle\">-------------------------------</div><div>Frank is a tool dedicated to providing insights & guidance on startups. Using AI and a scoring algorithm, entrepreneurs get immediate feedback on their business ideas.<br><br>A streamlined questionnaire gathers responses to be scored, after which they are compiled into queries for the LLM. A generated interpretation along with the algorithmic scores are presented and emailed to the user.</div></button>
-<button class=\"border border-subtle p-5 flex flex-col h-full hover:bg-backlight text-left\"><div>Embedded Systems</div><div class=\"text-subtle\">----------------</div><div>Using Arduino microcontrollers, custom circuits, and software in C to drive them, I did a few \"displays\" for companies at fairs. These displays hooked up to various sensors and generated visual/audio feedback.</div></button>
+<div class=\"
+\"><div class=\"bg-backdrop/80 w-full h-full\">
+<div class=\"dither bg-fg/50 w-full h-full\" onClick=\"
+\"></div></div>
+<div class=\"
+\" onKeydown=\"
+\" tabindex=\"0\">
+<button class=\"absolute right-0 top-0 px-4 py-1 bg-fg text-backdrop hover:bg-fg/50\" onClick=\"
+\">X</button><div>
+ <span class=\"text-faded\">&sol;&sol; 
+</span></div><div class=\"text-subtle\">
+-
+</div><div>
+</div></div></div>
+<button class=\"
+\" onClick=\"
+\"><div>
+ <span class=\"text-faded\">&sol;&sol; 
+</span></div><div class=\"text-subtle\">-------------------------</div><div>
+</div><div class=\"mt-auto text-faded flex items-center\"><br>More info ↗</div></button>
+Dress for Success Kelowna, a non-profit enabling women to succeed financially, had specific requirements for internal workflow and automation.<br><br>On top of a new client/volunteer database, I built a custom booking system suited to their needs. There is a multitude of supporting automations relating to client & volunteer management.
+Hello
+Frank is a tool dedicated to providing insights & guidance on startups. Using AI and a scoring algorithm, entrepreneurs get immediate feedback on their business ideas.<br><br>A streamlined questionnaire gathers responses to be scored, after which they are compiled into queries for the LLM. A generated interpretation along with the algorithmic scores are presented and emailed to the user.
+Hi
+Using Arduino microcontrollers, custom circuits, and software in C to drive them.<br><br>I did a few \"displays\" for companies at fairs. These displays hooked up to various sensors and generated visual/audio feedback.
+Sup
+<div id=\"projects\" class=\"py-16 px-5 md:px-0 bg-backlight/50\"><div class=\"m-auto mb-16 w-fit\"><div>Work Experience</div><div class=\"text-subtle\">---------------</div></div><div class=\"container lg:p-0 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 text-pretty\">
 </div></div>

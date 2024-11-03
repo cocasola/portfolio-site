@@ -3,49 +3,49 @@ package view
 import "main/view/components"
 
 templ Contact(fields []*view.Field) {
-    <div class="w-screen h-screen grid grid-columns-1 grid-rows-[auto_1fr_auto]">
+    <div class="w-screen h-screen grid grid-columns-1 grid-rows-[auto_1fr_auto] items-center">
         <div class="my-5 mx-auto">
             @view.NameLogo()
         </div>
-        <div class="p-16 grow flex flex-col justify-center">
-            <div class="min-w-[500px] m-auto">
-                    <form
-                        class="p-6 border-subtle w-full"
-                        hx-post="/contact"
-                        hx-target="#fields"
-                    >
-                        <div class="mx-auto w-fit mb-5">
-                            <div>
-                                Get in touch with me
-                            </div>
-                            <div class="text-subtle">
-                                --------------------
-                            </div>
+        <div class="p-5">
+            <div class="max-w-[500px] m-auto">
+                <form
+                    class="p-6 border-subtle w-full"
+                    hx-post="/contact"
+                    hx-target="#fields"
+                >
+                    <div class="mx-auto w-fit mb-5">
+                        <div>
+                            Get in touch with me
                         </div>
-                        <div class="flex flex-col gap-5" id="fields">
-                            @view.Fields(fields)
+                        <div class="text-subtle">
+                            --------------------
                         </div>
-                        <div class="text-faded my-5">
-                            <div>
-                                &sol;&sol;
-                                Or, email me directly at
-                            </div>
-                            <div>
-                                &sol;&sol;
-                                <a
-                                    href="mailto:keegan.g.beaulieu@gmail.com"
-                                    class="underline text-subtle/50"
-                                >
-                                    keegan.g.beaulieu&commat;gmail.com
-                                </a>
-                            </div>
+                    </div>
+                    <div class="flex flex-col gap-5" id="fields">
+                        @view.Fields(fields)
+                    </div>
+                    <div class="text-faded my-5">
+                        <div>
+                            &sol;&sol;
+                            Or, email me directly at
                         </div>
-                        <div class="flex justify-center mt-5">
-                            <button>
-                                @view.Button() { Send }
-                            </button>
+                        <div>
+                            &sol;&sol;
+                            <a
+                                href="mailto:keegan.g.beaulieu@gmail.com"
+                                class="underline text-subtle/50"
+                            >
+                                keegan.g.beaulieu&commat;gmail.com
+                            </a>
                         </div>
-                    </form>
+                    </div>
+                    <div class="flex justify-center mt-5">
+                        <button>
+                            @view.Button() { Send }
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
         @Footer()

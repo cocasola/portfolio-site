@@ -75,7 +75,7 @@ func initContactFields() contactFields {
 		name: c.Field{
 			Name:        "name",
 			Placeholder: "Your name",
-			Limit:       16,
+			Limit:       32,
 			Validate: func(value string) string {
 				if len(value) < 2 {
 					return "Please enter a name."

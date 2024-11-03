@@ -2,70 +2,191 @@ package view
 
 import "main/view/components"
 
+script displayDetails() {
+    const projectCard = event.target.closest(".project-card");
+    const wrapper = me(".project-details-wrapper", projectCard.parentElement);
+
+    const rect = projectCard.getBoundingClientRect();
+
+    wrapper.removeClass("opacity-0");
+    wrapper.removeClass("pointer-events-none");
+
+    me(".project-details", wrapper).styles({
+        margin: "0",
+        width: rect.width,
+        height: rect.height,
+        left: rect.left,
+        top: rect.top,
+        "transition-property": "none"
+    });
+
+    me(".project-details", wrapper).focus();
+
+    setTimeout(() => {
+        me(".project-details", wrapper).styles({
+            margin: "12rem 24rem",
+            width: "calc(100vw - 48rem)",
+            height: "calc(100vh - 24rem)",
+            left: "0px",
+            top: "0px",
+            "transition-property": "all"
+        });
+    }, 0);
+}
+
+script dismiss() {
+    if (event.type == "keydown" && event.key != "Escape") {
+        event.preventDefault()
+        return;
+    }
+
+    const wrapper = event.target.closest(".project-details-wrapper");
+    const projectCard = me(".project-card", wrapper.parentElement);
+
+    const rect = projectCard.getBoundingClientRect();
+
+    me(".project-details", wrapper).styles({
+        margin: "0",
+        width: rect.width,
+        height: rect.height,
+        left: rect.left,
+        top: rect.top
+    });
+
+    wrapper.addClass("opacity-0");
+
+    setTimeout(() => {
+        wrapper.addClass("pointer-events-none");
+    }, 300);
+}
+
+templ project(name string, time string, content templ.Component, details templ.Component) {
+    @view.ShadowBox() {
+        <div class={"fixed w-full h-full left-0 top-0 project-details-wrapper grid z-50",
+                    "pointer-events-none opacity-0 transition-all duration-300"}>
+            <div class="bg-backdrop/80 w-full h-full">
+                <div class="dither bg-fg/50 w-full h-full" onClick={dismiss()}></div>
+            </div>
+            <div
+                class={"border border-subtle p-5 absolute transition-all bg-backdrop",
+                       "project-details duration-300 overscroll-none outline-none"}
+                onKeydown={dismiss()}
+                tabindex="0"
+            >
+                <button
+                    class="absolute right-0 top-0 px-4 py-1 bg-fg text-backdrop hover:bg-fg/50"
+                    onClick={dismiss()}
+                >
+                    X
+                </button>
+                <div>
+                    { name }
+                    <span class="text-faded">
+                        &sol;&sol; { time }
+                    </span>
+                </div>
+                <div class="text-subtle">
+                    for range len(name) {
+                        -
+                    }
+                </div>
+                <div>
+                    @details
+                </div>
+            </div>
+        </div>
+        <button
+            class={"border border-subtle p-5 flex flex-col h-full hover:bg-backlight",
+                   "text-left project-card"}
+            onClick={displayDetails()}
+        >
+            <div>
+                { name }
+                <span class="text-faded">
+                    &sol;&sol; { time }
+                </span>
+            </div>
+            <div class="text-subtle">
+                -------------------------
+            </div>
+            <div>
+                @content
+            </div>
+            <div class="mt-auto text-faded flex items-center">
+                <br>
+                More info ↗
+            </div>
+        </button>
+    }
+}
+
+templ dfksContent() {
+    Dress for Success Kelowna, a non-profit enabling women to succeed
+    financially, had specific requirements for internal workflow and automation.
+    <br><br>
+    On top of a new client/volunteer database, I built a custom booking system
+    suited to their needs. There is a multitude of supporting automations
+    relating to client & volunteer management.
+}
+
+templ dfksDetails() {
+    Hello
+}
+
+templ frankContent() {
+    Frank is a tool dedicated to providing insights & guidance on startups.
+    Using AI and a scoring algorithm, entrepreneurs get immediate feedback
+    on their business ideas.
+    <br><br>
+    A streamlined questionnaire gathers responses to be scored, after which they
+    are compiled into queries for the LLM. A generated interpretation along with
+    the algorithmic scores are presented and emailed to the user.
+}
+
+templ frankDetails() {
+    Hi
+}
+
+templ embeddedContent() {
+    Using Arduino microcontrollers, custom circuits, and software in C to drive them.
+    <br><br>
+    I did a few "displays" for companies at fairs. These displays hooked
+    up to various sensors and generated visual/audio feedback.
+}
+
+templ embeddedDetails() {
+    Sup
+}
+
 templ Projects() {
-    <div id="projects" class="py-16 px-5 md:px-0 bg-backlight">
+    <div id="projects" class="py-16 px-5 md:px-0 bg-backlight/50">
+        <div class="m-auto mb-16 w-fit">
+            <div>
+                Work Experience
+            </div>
+            <div class="text-subtle">
+                ---------------
+            </div>
+        </div>
         <div class="container lg:p-0 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 text-pretty">
-            @view.ShadowBox() {
-                <button class="border border-subtle p-5 flex flex-col h-full hover:bg-backlight text-left">
-                    <div>
-                        DFSK - Styling Automation
-                    </div>
-                    <div class="text-subtle">
-                        -------------------------
-                    </div>
-                    <div>
-                        Dress for Success Kelowna, a non-profit enabling women to succeed
-                        financially, had specific requirements for internal workflow and automation.
-                        <br><br>
-                        On top of a new client/volunteer database, I built a custom booking system
-                        suited to their needs. There is a multitude of supporting automations
-                        relating to client & volunteer management.
-                    </div>
-                    // <div class="mt-auto text-faded flex items-center gap-2">
-                    //     More info ↗
-                    // </div>
-                </button>
-            }
-            @view.ShadowBox() {
-                <button class="border border-subtle p-5 flex flex-col h-full hover:bg-backlight text-left">
-                    <div>
-                        Frank - Project Assessment Tool
-                    </div>
-                    <div class="text-subtle">
-                        -------------------------------
-                    </div>
-                    <div>
-                        Frank is a tool dedicated to providing insights & guidance on startups.
-                        Using AI and a scoring algorithm, entrepreneurs get immediate feedback
-                        on their business ideas.
-                        <br><br>
-                        A streamlined questionnaire gathers responses to be scored, after which they
-                        are compiled into queries for the LLM. A generated interpretation along with
-                        the algorithmic scores are presented and emailed to the user.
-                    </div>
-                    // <div class="mt-auto text-faded flex items-center gap-2">
-                    //     More info ↗
-                    // </div>
-                </button>
-            }
-            @view.ShadowBox() {
-                <button class="border border-subtle p-5 flex flex-col h-full hover:bg-backlight text-left">
-                    <div>
-                        Embedded Systems
-                    </div>
-                    <div class="text-subtle">
-                        ----------------
-                    </div>
-                    <div>
-                        Using Arduino microcontrollers, custom circuits, and software in C to drive
-                        them, I did a few "displays" for companies at fairs. These displays hooked
-                        up to various sensors and generated visual/audio feedback.
-                    </div>
-                    // <div class="mt-auto text-faded flex items-center gap-2">
-                    //     More info ↗
-                    // </div>
-                </button>
-            }
+            @project(
+                "DFSK - Styling Automation",
+                "Fall 2023",
+                dfksContent(),
+                dfksDetails(),
+            )
+            @project(
+                "Frank - Project Assessment",
+                "Spring 2024",
+                frankContent(),
+                frankDetails(),
+            )
+            @project(
+                "Embedded Systems",
+                "2017",
+                embeddedContent(),
+                embeddedDetails(),
+            )
         </div>
     </div>
 }

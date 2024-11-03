@@ -10,8 +10,8 @@ import templruntime "github.com/a-h/templ/runtime"
 
 func mainScript() templ.ComponentScript {
 	return templ.ComponentScript{
-		Name: `__templ_mainScript_a017`,
-		Function: `function __templ_mainScript_a017(){let removeListeners = [];
+		Name: `__templ_mainScript_5cb4`,
+		Function: `function __templ_mainScript_5cb4(){let removeListeners = [];
 
 	window.onRemove = function (node, callback) {
 		removeListeners.push({
@@ -53,7 +53,7 @@ func mainScript() templ.ComponentScript {
 			input.value.substring(0, index)+
 			"<span class='bg-fg'>&nbsp;</span>"+
 			input.value.substring(index);
-		holder.styles({ left: (-input.scrollLeft).toString() });
+		holder.styles({ left: (-input.scrollLeft).toString(), top: (-input.scrollTop).toString() });
 	}
 
 	document.addEventListener("selectionchange", function (e) {
@@ -72,8 +72,8 @@ func mainScript() templ.ComponentScript {
 		}, 0);
 	});
 }`,
-		Call:       templ.SafeScript(`__templ_mainScript_a017`),
-		CallInline: templ.SafeScriptInline(`__templ_mainScript_a017`),
+		Call:       templ.SafeScript(`__templ_mainScript_5cb4`),
+		CallInline: templ.SafeScriptInline(`__templ_mainScript_5cb4`),
 	}
 }
 

@@ -25,8 +25,11 @@
     mask-size: 4px 4px;
 }
 
-input, textarea {
-    caret-color: transparent !important;
+@media (min-width: 768px) {
+    input,
+    textarea {
+        caret-color: transparent !important;
+    }
 }
 
 @keyframes blink {
@@ -37,6 +40,7 @@ input, textarea {
 
 .caret-holder {
     word-wrap: break-word;
+
     span {
         animation: blink 1s steps(1, end) infinite;
     }
