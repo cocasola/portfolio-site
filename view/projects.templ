@@ -6,34 +6,11 @@ script displayDetails() {
     const projectCard = event.target.closest(".project-card");
     const wrapper = me(".project-details-wrapper", projectCard.parentElement);
 
-    const rect = projectCard.getBoundingClientRect();
-
     wrapper.removeClass("opacity-0");
     wrapper.removeClass("pointer-events-none");
 
-    me(".project-details", wrapper).styles({
-        margin: "0",
-        width: rect.width,
-        height: rect.height,
-        left: rect.left,
-        top: rect.top,
-        "transition-property": "none"
-    });
-
+    me(".project-details", wrapper).removeClass("scale-75");
     me(".project-details", wrapper).focus();
-
-    setTimeout(() => {
-        me(".project-details", wrapper).styles("transition-property: all");
-        me(".project-details", wrapper).addClass("project-details-maximize");
-
-        me(".project-details", wrapper).styles({
-            margin: null,
-            width: null,
-            height: null,
-            left: null,
-            top: null
-        });
-    }, 0);
 }
 
 script dismiss() {
@@ -45,69 +22,48 @@ script dismiss() {
     const wrapper = event.target.closest(".project-details-wrapper");
     const projectCard = me(".project-card", wrapper.parentElement);
 
-    const rect = projectCard.getBoundingClientRect();
-    const currentRect = me(".project-details", wrapper).getBoundingClientRect();
+    wrapper.addClass("opacity-0");
+    wrapper.addClass("pointer-events-none");
 
-    me(".project-details", wrapper).removeClass("project-details-maximize");
-    me(".project-details", wrapper).styles("transition-property: none");
-
-    me(".project-details", wrapper).styles({
-        width: currentRect.width,
-        height: currentRect.height,
-        left: currentRect.left,
-        top: currentRect.top
-    });
-
-    setTimeout(() => {
-        me(".project-details", wrapper).styles("transition-property: all");
-
-        me(".project-details", wrapper).styles({
-            width: rect.width,
-            height: rect.height,
-            left: rect.left,
-            top: rect.top
-        });
-
-        wrapper.addClass("opacity-0");
-
-        setTimeout(() => {
-            wrapper.addClass("pointer-events-none");
-        }, 300);
-    }, 0);
+    me(".project-details", wrapper).addClass("scale-75");
+    me(".project-details", wrapper).blur();
 }
 
 templ project(name string, time string, content templ.Component, details templ.Component) {
     @view.ShadowBox() {
-        <div class={"fixed w-full h-full left-0 top-0 project-details-wrapper grid z-50",
-                    "pointer-events-none opacity-0 transition-all duration-300"}>
-            <div class="bg-backdrop/80 w-full h-full">
-                <div class="dither bg-fg/50 w-full h-full" onClick={dismiss()}></div>
+        <div class={"fixed w-full h-full left-0 top-0 project-details-wrapper z-50",
+                    "pointer-events-none opacity-0 transition-all duration-300",
+                    "flex items-center justify-center"}>
+            <div class="bg-backdrop/90 w-full h-full absolute">
+                <div class="dither bg-fg/30 w-full h-full" onClick={dismiss()}></div>
             </div>
-            <div
-                class={"border border-subtle p-5 absolute transition-all bg-backdrop",
-                       "project-details duration-300 overscroll-none outline-none"}
-                onKeydown={dismiss()}
-                tabindex="0"
-            >
-                <button
-                    class="absolute right-0 top-0 px-4 py-1 bg-fg text-backdrop hover:bg-fg/50"
-                    onClick={dismiss()}
+            <div class="w-full h-full max-w-[1200px] grid p-5">
+                <div
+                    class={"border border-subtle p-5 transition-all bg-backdrop scale-75",
+                        "project-details duration-300 overscroll-none outline-none relative"}
+                    onKeydown={dismiss()}
+                    tabindex="0"
                 >
-                    X
-                </button>
-                <div>
-                    { name }
-                    <span class="text-faded">
-                        &sol;&sol; { time }
-                    </span>
-                </div>
-                <div class="text-subtle">
-                    for range len(name) {
-                        -
-                    }
-                </div>
-                <div>
-                    @details
+                    <button
+                        class="absolute right-0 top-0 px-4 py-1 bg-fg text-backdrop hover:bg-fg/50"
+                        onClick={dismiss()}
+                    >
+                        X
+                    </button>
+                    <div>
+                        { name }
+                        <span class="text-faded">
+                            &sol;&sol; { time }
+                        </span>
+                    </div>
+                    <div class="text-subtle">
+                        for range len(name) {
+                            -
+                        }
+                    </div>
+                    <div>
+                        @details
+                    </div>
                 </div>
             </div>
         </div>

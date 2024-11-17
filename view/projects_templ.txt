@@ -1,7 +1,7 @@
 <div class=\"
-\"><div class=\"bg-backdrop/80 w-full h-full\">
-<div class=\"dither bg-fg/50 w-full h-full\" onClick=\"
-\"></div></div>
+\"><div class=\"bg-backdrop/90 w-full h-full absolute\">
+<div class=\"dither bg-fg/30 w-full h-full\" onClick=\"
+\"></div></div><div class=\"w-full h-full max-w-[1200px] grid p-5\">
 <div class=\"
 \" onKeydown=\"
 \" tabindex=\"0\">
@@ -11,7 +11,7 @@
 </span></div><div class=\"text-subtle\">
 -
 </div><div>
-</div></div></div>
+</div></div></div></div>
 <button class=\"
 \" onClick=\"
 \"><div>
