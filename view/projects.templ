@@ -1,6 +1,6 @@
 package view
 
-import "main/view/components"
+import view "main/view/components"
 
 script displayDetails() {
     const projectCard = event.target.closest(".project-card");
@@ -30,136 +30,141 @@ script dismiss() {
 }
 
 templ project(name string, time string, content templ.Component, details templ.Component) {
-    @view.ShadowBox() {
-        <div class={"fixed w-full h-full left-0 top-0 project-details-wrapper z-50",
+	@view.ShadowBox() {
+		<div
+			class={ "fixed w-full h-full left-0 top-0 project-details-wrapper z-50",
                     "pointer-events-none opacity-0 transition-all duration-300",
-                    "flex items-center justify-center"}>
-            <div class="bg-backdrop/90 w-full h-full absolute">
-                <div class="dither bg-fg/30 w-full h-full" onClick={dismiss()}></div>
-            </div>
-            <div class="w-full h-full max-w-[1200px] grid p-5">
-                <div
-                    class={"border border-subtle p-5 transition-all bg-backdrop scale-75",
-                        "project-details duration-300 overscroll-none outline-none relative"}
-                    onKeydown={dismiss()}
-                    tabindex="0"
-                >
-                    <button
-                        class="absolute right-0 top-0 px-4 py-1 bg-fg text-backdrop hover:bg-fg/50"
-                        onClick={dismiss()}
-                    >
-                        X
-                    </button>
-                    <div>
-                        { name }
-                        <span class="text-faded">
-                            &sol;&sol; { time }
-                        </span>
-                    </div>
-                    <div class="text-subtle">
-                        for range len(name) {
-                            -
-                        }
-                    </div>
-                    <div>
-                        @details
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button
-            class={"border border-subtle p-5 flex flex-col h-full hover:bg-backlight",
-                   "text-left project-card"}
-            onClick={displayDetails()}
-        >
-            <div>
-                { name }
-                <span class="text-faded">
-                    &sol;&sol; { time }
-                </span>
-            </div>
-            <div class="text-subtle">
-                -------------------------
-            </div>
-            <div>
-                @content
-            </div>
-            <div class="mt-auto text-faded flex items-center">
-                <br>
-                More info ↗
-            </div>
-        </button>
-    }
+                    "flex items-center justify-center" }
+		>
+			<div class="bg-backdrop/90 w-full h-full absolute">
+				<div class="dither bg-fg/30 w-full h-full" onClick={ dismiss() }></div>
+			</div>
+			<div class="w-full h-full max-w-[1200px] grid p-5">
+				<div
+					class={ "border border-subtle p-5 transition-all bg-backdrop scale-75",
+                        "project-details duration-300 overscroll-none outline-none relative" }
+					onKeydown={ dismiss() }
+					tabindex="0"
+				>
+					<button
+						class="absolute right-0 top-0 px-4 py-1 bg-fg text-backdrop hover:bg-fg/50"
+						onClick={ dismiss() }
+					>
+						X
+					</button>
+					<div>
+						{ name }
+						<span class="text-faded">
+							&sol;&sol; { time }
+						</span>
+					</div>
+					<div class="text-subtle">
+						for range len(name) {
+							-
+						}
+					</div>
+					<div>
+						@details
+					</div>
+				</div>
+			</div>
+		</div>
+		<button
+			class={ "border border-subtle p-5 flex flex-col h-full hover:bg-backlight",
+                   "text-left project-card" }
+			onClick={ displayDetails() }
+		>
+			<div>
+				{ name }
+				<span class="text-faded">
+					&sol;&sol; { time }
+				</span>
+			</div>
+			<div class="text-subtle">
+				-------------------------
+			</div>
+			<div>
+				@content
+			</div>
+			<div class="mt-auto text-faded flex items-center">
+				<br/>
+				More info ↗
+			</div>
+		</button>
+	}
 }
 
 templ dfksContent() {
-    Dress for Success Kelowna, a non-profit enabling women to succeed
-    financially, had specific requirements for internal workflow and automation.
-    <br><br>
-    On top of a new client/volunteer database, I built a custom booking system
-    suited to their needs. There is a multitude of supporting automations
-    relating to client & volunteer management.
+	Dress for Success Kelowna, a non-profit enabling women to succeed
+	financially, had specific requirements for internal workflow and automation.
+	<br/>
+	<br/>
+	On top of a new client/volunteer database, I built a custom booking system
+	suited to their needs. There is a multitude of supporting automations
+	relating to client & volunteer management.
 }
 
 templ dfksDetails() {
-    Hello
+	Under construction
 }
 
 templ frankContent() {
-    Frank is a tool dedicated to providing insights & guidance on startups.
-    Using AI and a scoring algorithm, entrepreneurs get immediate feedback
-    on their business ideas.
-    <br><br>
-    A streamlined questionnaire gathers responses to be scored, after which they
-    are compiled into queries for the LLM. A generated interpretation along with
-    the algorithmic scores are presented and emailed to the user.
+	Frank is a tool dedicated to providing insights & guidance on startups.
+	Using AI and a scoring algorithm, entrepreneurs get immediate feedback
+	on their business ideas.
+	<br/>
+	<br/>
+	A streamlined questionnaire gathers responses to be scored, after which they
+	are compiled into queries for the LLM. A generated interpretation along with
+	the algorithmic scores are presented and emailed to the user.
 }
 
 templ frankDetails() {
-    Hi
+	Under construction
 }
 
 templ embeddedContent() {
-    Using Arduino microcontrollers, custom circuits, and software in C to drive them.
-    I did a few "displays" for companies at fairs.
-    <br><br>
-    These displays hooked up to various sensors and generated visual/audio feedback through
-    LED matrices or speakers.
+	Using Arduino microcontrollers, custom circuits, and software in C to drive them.
+	I did a few "displays" for companies at fairs.
+	<br/>
+	<br/>
+	These displays hooked up to various sensors and generated visual/audio feedback through
+	LED matrices or speakers.
 }
 
 templ embeddedDetails() {
-    Sup
+	Under construction
 }
 
 templ Projects() {
-    <div id="projects" class="py-16 px-5 md:px-0 bg-backlight/50">
-        <div class="m-auto mb-16 w-fit">
-            <div>
-                Work Experience
-            </div>
-            <div class="text-subtle">
-                ---------------
-            </div>
-        </div>
-        <div class="container lg:p-0 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 text-pretty">
-            @project(
-                "DFSK - Styling Automation",
-                "Fall 2023",
-                dfksContent(),
-                dfksDetails(),
-            )
-            @project(
-                "Frank - Project Assessment",
-                "Spring 2024",
-                frankContent(),
-                frankDetails(),
-            )
-            @project(
-                "Embedded Systems",
-                "2017",
-                embeddedContent(),
-                embeddedDetails(),
-            )
-        </div>
-    </div>
+	<div id="projects" class="py-16 px-5 md:px-0 bg-backlight/50">
+		<div class="m-auto mb-16 w-fit">
+			<div>
+				Work Experience
+			</div>
+			<div class="text-subtle">
+				---------------
+			</div>
+		</div>
+		<div class="container lg:p-0 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 text-pretty">
+			@project(
+				"DFSK - Styling Automation",
+				"Fall 2023",
+				dfksContent(),
+				dfksDetails(),
+			)
+			@project(
+				"Frank - Project Assessment",
+				"Spring 2024",
+				frankContent(),
+				frankDetails(),
+			)
+			@project(
+				"Embedded Systems",
+				"2017",
+				embeddedContent(),
+				embeddedDetails(),
+			)
+		</div>
+	</div>
 }

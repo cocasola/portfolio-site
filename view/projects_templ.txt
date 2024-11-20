@@ -19,10 +19,10 @@
 </span></div><div class=\"text-subtle\">-------------------------</div><div>
 </div><div class=\"mt-auto text-faded flex items-center\"><br>More info ↗</div></button>
 Dress for Success Kelowna, a non-profit enabling women to succeed financially, had specific requirements for internal workflow and automation.<br><br>On top of a new client/volunteer database, I built a custom booking system suited to their needs. There is a multitude of supporting automations relating to client & volunteer management.
-Hello
+Under construction
 Frank is a tool dedicated to providing insights & guidance on startups. Using AI and a scoring algorithm, entrepreneurs get immediate feedback on their business ideas.<br><br>A streamlined questionnaire gathers responses to be scored, after which they are compiled into queries for the LLM. A generated interpretation along with the algorithmic scores are presented and emailed to the user.
-Hi
+Under construction
 Using Arduino microcontrollers, custom circuits, and software in C to drive them. I did a few \"displays\" for companies at fairs.<br><br>These displays hooked up to various sensors and generated visual/audio feedback through LED matrices or speakers.
-Sup
+Under construction
 <div id=\"projects\" class=\"py-16 px-5 md:px-0 bg-backlight/50\"><div class=\"m-auto mb-16 w-fit\"><div>Work Experience</div><div class=\"text-subtle\">---------------</div></div><div class=\"container lg:p-0 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 text-pretty\">
 </div></div>
